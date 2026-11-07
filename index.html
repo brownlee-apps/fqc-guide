@@ -4,13 +4,915 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
-<title>FQ&amp;C Portal Guide · BPCC</title>
-<style>body{margin:0;font:16px/1.5 Arial,Helvetica,sans-serif;color:#1E1416;background:#F4F1F1}main{max-width:640px;margin:15vh auto;padding:32px;background:#fff;border-top:6px solid #8D042D}h1{font-size:22px;color:#56000C;margin:0 0 8px}a{color:#8D042D}</style>
+<title>FQ&amp;C Portal Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap">
+<style>
+
+
+:root {
+  /* Layout: one source for two renderings. Print is the Letter-size PDF; screen is one reading column under a maroon cover band. */
+  --maroon: #8D042D; --gold: #FEBA12; --dark: #56000C; --orange: #F7941D;
+  --ink: #1F1A1B; --mute: #5E5558; --line: #E2D9DB; --cream: #FFFBF0; --paper: #FFFFFF; --wash: #F7F2F3;
+  --accent: #8D042D; --accent-2: #56000C; --num: #FEBA12; --key-bg: #FBF0F3; --key-line: #E7C3CD; --focus: #F7941D; --role-bg: #FFF5DA;
+  --font-display: "Bebas Neue", Impact, "Arial Narrow", Arial, sans-serif;
+  --font-body: "Montserrat", Arial, Helvetica, sans-serif;
+}
+/* Dark theme applies on screen only, so the PDF always prints in the light palette. */
+@media screen and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --ink: #F2E8EA; --mute: #C4B4B8; --line: #3D252C; --cream: #2B2311; --paper: #170B0F; --wash: #24141A;
+    --accent: #F5B3C3; --accent-2: #FAD9E1; --key-bg: #2B1119; --key-line: #5E2535; --role-bg: #2A2010; color-scheme: dark;
+  }
+}
+@media screen {
+  :root[data-theme="dark"] {
+    --ink: #F2E8EA; --mute: #C4B4B8; --line: #3D252C; --cream: #2B2311; --paper: #170B0F; --wash: #24141A;
+    --accent: #F5B3C3; --accent-2: #FAD9E1; --key-bg: #2B1119; --key-line: #5E2535; --role-bg: #2A2010; color-scheme: dark;
+  }
+}
+@page { size: Letter; margin: 0.95in 0.75in 0.85in 0.75in; }
+html, body { margin: 0; padding: 0; }
+body { font-family: "Montserrat", Arial, sans-serif; font-size: 10.2pt; line-height: 1.52; color: var(--ink); background: var(--paper); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+p { margin: 0 0 8pt 0; orphans: 3; widows: 3; }
+a { color: var(--accent); text-decoration: none; }
+strong { font-weight: 600; }
+.mono { font-family: "Menlo", "Consolas", "Courier New", monospace; font-size: 0.92em; }
+
+/* ---------- cover ----------
+   Option B, chosen October 25, 2026: a gold field with the maroon logo on it, the title in maroon, and the
+   Bossier City, Natchitoches, and Sabine Valley campuses as three equal circles on the seam where gold meets
+   maroon. Solid fills and opaque images only (the logo is flattened onto gold in assets/logo_on_gold.png),
+   since some PDF viewers draw transparency badly. */
+.cover { width: 8.5in; height: 11in; background: var(--gold); color: var(--dark); position: relative; overflow: hidden; page-break-after: always; }
+.cover .low { position: absolute; left: 0; top: 7.6in; width: 8.5in; height: 3.4in; background: var(--maroon); }
+.cover .logo { position: absolute; left: 0.62in; top: 0.62in; width: 2.75in; display: block; }
+.cover .kicker { position: absolute; left: 0.66in; top: 2.02in; font-size: 9.5pt; letter-spacing: 0.24em; text-transform: uppercase; color: var(--dark); font-weight: 600; }
+.cover .t1 { position: absolute; left: 0.6in; top: 2.28in; margin: 0; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 54pt; line-height: 1; letter-spacing: 0.04em; color: var(--dark); }
+.cover .t2 { position: absolute; left: 0.52in; top: 2.94in; margin: 0; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 214pt; line-height: 0.86; letter-spacing: 0.005em; color: var(--maroon); }
+.cover .rule { position: absolute; left: 0.66in; top: 5.6in; width: 1.3in; height: 5pt; background: var(--maroon); }
+.cover .t3 { position: absolute; left: 0.66in; top: 5.76in; margin: 0; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 26pt; line-height: 1; letter-spacing: 0.05em; color: var(--dark); }
+.cover .rings { position: absolute; left: 0.62in; right: 0.62in; top: 6.55in; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3in; justify-items: center; }
+.cover .ring { width: 2.1in; text-align: center; }
+.cover .ring img { width: 2.1in; height: 2.1in; object-fit: cover; display: block; border-radius: 50%; border: 6pt solid var(--dark); box-sizing: border-box; background: var(--dark); }
+.cover .ring span { display: block; margin-top: 9pt; font-family: "Bebas Neue", Arial, sans-serif; font-size: 17pt; letter-spacing: 0.1em; color: var(--gold); line-height: 1; }
+.cover .ring small { display: block; margin-top: 3pt; font-size: 7.5pt; letter-spacing: 0.24em; text-transform: uppercase; color: #F6E3E8; font-weight: 600; }
+.cover .foot { position: absolute; left: 0.66in; right: 0.62in; bottom: 0.4in; display: flex; justify-content: space-between; font-size: 8.5pt; color: #F6E3E8; letter-spacing: 0.14em; text-transform: uppercase; border-top: 1pt solid var(--gold); padding-top: 7pt; }
+
+/* ---------- contents ---------- */
+.toc h1 { margin-top: 0; }
+.toc ol { list-style: none; margin: 0; padding: 0; }
+.toc li { padding: 4pt 0; border-bottom: 1px solid var(--line); font-size: 11pt; }
+.toc li a { display: flex; align-items: baseline; color: inherit; }
+.toc li .n { width: 26pt; font-family: "Bebas Neue", Arial, sans-serif; font-size: 16pt; color: var(--accent); }
+.toc li .t { flex: 1; }
+.toc li .p { font-family: "Bebas Neue", Arial, sans-serif; font-size: 15pt; color: var(--accent); min-width: 20pt; text-align: right; }
+.toc li .s { display: block; font-size: 8.8pt; color: var(--mute); margin-top: 1pt; }
+
+/* ---------- sections ---------- */
+section.sec { page-break-before: always; }
+h1 { font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 34pt; line-height: 1; color: var(--accent); margin: 0 0 4pt 0; letter-spacing: 0.01em; }
+section:not(.sec) > h1 { page-break-after: avoid; break-after: avoid; }
+h1 .num { color: var(--num); margin-right: 8pt; }
+.lede { font-size: 11.2pt; color: var(--mute); margin: 0 0 14pt 0; line-height: 1.5; }
+.gold-rule { width: 1.2in; height: 4pt; background: var(--gold); margin: 6pt 0 12pt 0; }
+h2 { font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 19pt; line-height: 1.05; color: var(--accent-2); margin: 16pt 0 5pt 0; letter-spacing: 0.02em; page-break-after: avoid; break-after: avoid; }
+h3 { font-size: 10.6pt; font-weight: 700; color: var(--accent); margin: 12pt 0 3pt 0; page-break-after: avoid; break-after: avoid; }
+
+/* figures */
+figure { margin: 8pt 0 12pt 0; page-break-inside: avoid; break-inside: avoid; }
+figure img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 4pt; break-inside: avoid; page-break-inside: avoid; }
+figure, .annot { display: block; }
+ol.steps figure { display: inline-block; width: 100%; vertical-align: top; }
+figure.w60 img { width: 58%; }
+figure.w45 img { width: 46%; }
+figure.w75 img { width: 76%; }
+figure.w85 img { width: 86%; }
+figure.w80 img { width: 80%; }
+figcaption { font-size: 8.6pt; color: var(--mute); margin-top: 4pt; line-height: 1.4; }
+figcaption b { color: var(--accent); font-weight: 600; }
+.two { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; align-items: start; }
+.two figure { margin-top: 4pt; }
+/* the submission form, shown in two halves; border-box keeps the right half's border inside the page */
+.two.jf { margin-top: 6pt; }
+.two.jf img { box-sizing: border-box; }
+
+/* annotated figure */
+.annot { position: relative; margin: 6pt 0 10pt 0; page-break-inside: avoid; }
+.annot img { width: 100%; display: block; border: 1px solid var(--line); border-radius: 4pt; }
+.annot .b { position: absolute; width: 17pt; height: 17pt; border-radius: 50%; background: var(--maroon); color: #fff; font-family: "Bebas Neue", Arial, sans-serif; font-size: 12.5pt; line-height: 17pt; text-align: center; box-shadow: 0 0 0 2pt #fff, 0 2pt 6pt rgba(0,0,0,0.35); transform: translate(-50%, -50%); }
+.keys { display: grid; grid-template-columns: 1fr 1fr; gap: 3pt 14pt; margin: 0 0 8pt 0; font-size: 9.4pt; }
+.keys div { display: flex; gap: 6pt; align-items: flex-start; }
+.keys .k { flex: none; width: 15pt; height: 15pt; border-radius: 50%; background: var(--maroon); color: #fff; font-family: "Bebas Neue", Arial, sans-serif; font-size: 11pt; line-height: 15pt; text-align: center; margin-top: 1pt; }
+
+/* callouts */
+.box { border-radius: 4pt; padding: 8pt 11pt; margin: 8pt 0 10pt 0; page-break-inside: avoid; break-inside: avoid; font-size: 9.7pt; line-height: 1.5; }
+.box.tip { background: var(--cream); border: 1px solid var(--gold); box-shadow: inset 3pt 0 0 var(--gold); }
+.box.key { background: var(--key-bg); border: 1px solid var(--key-line); box-shadow: inset 3pt 0 0 var(--maroon); }
+.box .t { font-weight: 700; color: var(--accent); font-size: 8.6pt; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 2pt; }
+.box p:last-child { margin-bottom: 0; }
+
+/* steps */
+ol.steps { list-style: none; margin: 4pt 0 6pt 0; padding: 0; counter-reset: s; }
+ol.steps > li { position: relative; padding-left: 30pt; margin-bottom: 9pt; counter-increment: s; }
+ol.steps > li::before { content: counter(s); position: absolute; left: 0; top: 1pt; width: 20pt; height: 20pt; border-radius: 50%; background: var(--maroon); color: #fff; font-family: "Bebas Neue", Arial, sans-serif; font-size: 14pt; line-height: 20pt; text-align: center; }
+ol.steps > li b.h { display: block; font-weight: 700; color: var(--accent-2); margin-bottom: 1pt; page-break-after: avoid; break-after: avoid; }
+
+/* why cards */
+.why { display: grid; grid-template-columns: 1fr 1fr; gap: 9pt; margin: 6pt 0 4pt 0; }
+.why .card { border: 1px solid var(--line); border-top: 4pt solid var(--maroon); border-radius: 4pt; padding: 7pt 10pt 6pt 10pt; page-break-inside: avoid; break-inside: avoid; }
+.why .card h3 { margin: 0 0 2pt 0; font-size: 10.4pt; }
+.why .card p { font-size: 9.2pt; line-height: 1.42; margin: 0; }
+
+/* plain lists */
+ul { margin: 2pt 0 8pt 0; padding-left: 16pt; }
+li { margin-bottom: 3pt; }
+dl.qa dt { font-weight: 700; color: var(--accent-2); margin-top: 9pt; page-break-after: avoid; }
+dl.qa dd { margin: 2pt 0 0 0; }
+
+/* tables */
+table { width: 100%; border-collapse: collapse; font-size: 9.4pt; margin: 6pt 0 10pt 0; }
+tr { page-break-inside: avoid; break-inside: avoid; }
+th { text-align: left; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--gold); padding: 5pt 6pt; font-size: 8.8pt; letter-spacing: 0.06em; text-transform: uppercase; }
+td { border-bottom: 1px solid var(--line); padding: 5pt 6pt; vertical-align: top; }
+td.k { font-weight: 600; width: 1.6in; color: var(--accent-2); }
+
+/* contacts */
+.contacts { display: grid; grid-template-columns: 1fr 1fr; gap: 12pt; margin-top: 10pt; }
+.contact { background: var(--wash); border-radius: 4pt; padding: 11pt 13pt; page-break-inside: avoid; }
+.contact .n { font-family: "Bebas Neue", Arial, sans-serif; font-size: 18pt; color: var(--accent); line-height: 1; }
+.contact .r { font-size: 9.4pt; color: var(--mute); margin: 2pt 0 6pt 0; }
+.contact .d { font-size: 9.6pt; line-height: 1.5; }
+.chain { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8pt; margin: 8pt 0 10pt 0; }
+.chain div { background: var(--wash); border-radius: 4pt; padding: 8pt 9pt; font-size: 9pt; line-height: 1.45; border-top: 4pt solid var(--gold); page-break-inside: avoid; }
+.chain div b { display: block; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 15pt; color: var(--accent); margin-bottom: 2pt; }
+.chain div.first { border-top-color: var(--maroon); }
+.avoid { page-break-inside: avoid; break-inside: avoid; }
+.uses { border-left: 4pt solid var(--gold); padding-left: 12pt; margin: 4pt 0 10pt 0; }
+.uses h3 { margin-top: 6pt; }
+.uses p { margin-bottom: 6pt; }
+.brk { page-break-before: always; }
+.end { margin-top: 18pt; border-top: 2px solid var(--gold); padding-top: 8pt; font-size: 8.8pt; color: var(--mute); }
+/* the booking call-out under the contact cards: solid fills only, and each button is a real link in the PDF too */
+.book-acts { flex: none; display: flex; flex-direction: column; gap: 6pt; }
+.book-acts a.book-btn { justify-content: flex-start; }
+.book { display: flex; align-items: center; gap: 14pt; margin: 14pt 0 4pt 0; padding: 11pt 14pt 11pt 14pt; background: var(--key-bg); border: 1px solid var(--key-line); border-left: 5pt solid var(--maroon); border-radius: 4pt; page-break-inside: avoid; break-inside: avoid; }
+.book-copy { flex: 1; min-width: 0; }
+.book .t { font-family: "Bebas Neue", Arial, sans-serif; font-size: 18pt; line-height: 1; letter-spacing: 0.02em; color: var(--accent); margin-bottom: 4pt; }
+.book p { margin: 0; font-size: 9.6pt; line-height: 1.5; }
+a.book-btn { flex: none; display: inline-flex; align-items: center; gap: 6pt; background: #8D042D; color: #FFFFFF; font-weight: 700; font-size: 9.6pt; line-height: 1.2; padding: 8pt 12pt; border-radius: 4pt; text-decoration: none; white-space: nowrap; }
+a.book-btn svg { width: 11pt; height: 11pt; flex: none; }
+
+/* ---------- section 7: requisites ----------
+   The three kinds as cards with solid header bands (the quick guide's colors), and the decision path as rows:
+   a question, a Yes arrow to its answer, and a No step down to the next question. Solid fills only. */
+.req3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 9pt; margin: 6pt 0 6pt 0; }
+.req { border: 1px solid var(--line); border-radius: 4pt; overflow: hidden; background: var(--paper); display: flex; flex-direction: column; page-break-inside: avoid; break-inside: avoid; }
+.req .hd { padding: 7pt 10pt 6pt 10pt; background: #8D042D; color: #FFFFFF; }
+.req .hd b { display: block; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 20pt; line-height: 1; letter-spacing: 0.02em; }
+.req .hd span { display: block; margin-top: 2pt; font-size: 7.4pt; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #FEBA12; }
+.req.conc .hd { background: #FEBA12; color: #56000C; }
+.req.conc .hd span { color: #8D042D; }
+.req.co .hd { background: #56000C; }
+.req .bd { flex: 1; display: flex; flex-direction: column; padding: 7pt 9pt 8pt 9pt; font-size: 8.9pt; line-height: 1.42; }
+.req .bd p { margin: 0 0 5pt 0; }
+.req .chips { display: flex; flex-wrap: wrap; gap: 3pt; margin-bottom: 6pt; }
+.chip { display: inline-flex; align-items: center; gap: 2pt; font-size: 7pt; font-weight: 600; line-height: 1.2; padding: 2pt 4.5pt; border-radius: 3pt; border: 1px solid var(--line); color: var(--mute); background: var(--paper); white-space: nowrap; }
+.chip svg { width: 8pt; height: 8pt; flex: none; }
+.chip.yes { background: #FEBA12; border-color: #FEBA12; color: #56000C; }
+.req .in { margin-top: auto; border-top: 1px solid var(--line); padding-top: 4pt; font-size: 8.3pt; line-height: 1.38; }
+.req .in + .in { margin-top: 4pt; }
+.req .in b { display: block; font-size: 7pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); }
+.req .in i { color: var(--mute); }
+.flow { margin: 4pt 0 6pt 0; }
+.flow .row, .flow .down { display: grid; grid-template-columns: 1.12fr 46pt 1fr; align-items: stretch; }
+.flow .row { page-break-inside: avoid; break-inside: avoid; }
+.flow .q { display: flex; align-items: center; border: 1.5pt solid var(--accent); border-radius: 5pt; padding: 5.5pt 10pt; font-weight: 600; font-size: 9.6pt; line-height: 1.35; color: var(--accent-2); background: var(--paper); }
+.flow .q.note { border-style: dashed; font-weight: 500; color: var(--ink); }
+.flow .yes { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 1pt; font-size: 7.4pt; font-weight: 700; letter-spacing: 0.14em; color: var(--accent); }
+.flow .yes svg { width: 30pt; height: 9pt; }
+.flow .a { border-radius: 5pt; padding: 5.5pt 10pt; display: flex; flex-direction: column; justify-content: center; }
+.flow .a b { display: block; font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 16pt; line-height: 1; letter-spacing: 0.02em; }
+.flow .a small { display: block; margin-top: 2pt; font-size: 8.2pt; line-height: 1.35; }
+.flow .a.pre { background: #8D042D; color: #FFFFFF; }
+.flow .a.pre small, .flow .a.co small { color: #F6E3E8; }
+.flow .a.conc { background: #FEBA12; color: #56000C; }
+.flow .a.co { background: #56000C; color: #FFFFFF; }
+.flow .a.sec { background: var(--paper); border: 1.5pt dashed var(--accent); color: var(--accent-2); }
+.flow .a.sec small { color: var(--ink); }
+.flow .down span { justify-self: center; display: flex; align-items: center; gap: 4pt; padding: 1pt 0; font-size: 7.4pt; font-weight: 700; letter-spacing: 0.14em; color: var(--mute); }
+.flow .down svg { width: 8pt; height: 10pt; }
+table.rules td.k { width: 0.85in; white-space: nowrap; }
+figure.tight { margin-top: 4pt; margin-bottom: 8pt; }
+/* a screenshot beside its key (section 9's course list, October 29, 2026) */
+.figside { display: grid; grid-template-columns: 27% 1fr; gap: 16pt; align-items: start; margin: 8pt 0 12pt 0; break-inside: avoid; page-break-inside: avoid; }
+.figside figure { margin: 0; }
+.figside dl { margin: 0; display: grid; grid-template-columns: auto 1fr; gap: 7pt 10pt; align-items: baseline; font-size: 9.6pt; line-height: 1.4; }
+.figside dt { margin: 0; }
+.figside dd { margin: 0; }
+.tagk { display: inline-block; font-family: 'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace; font-size: 7.4pt; font-weight: 700; letter-spacing: .04em; padding: 0 4pt; border-radius: 2.5pt; border: 1px solid #D97A0C; background: #FFF4E5; color: #8A4B00; white-space: nowrap; }
+.tagk.done { border-color: #3F7D4E; background: #E3F1E6; color: #3F7D4E; }
+.tagk.ret { border-color: #B3261E; background: #FDECEC; color: #8E1B1B; }
+table.rules td:nth-child(2) { width: 2in; }
+.annot.w80 { width: 80%; }
+.annot.w92 { width: 92%; margin-left: auto; margin-right: auto; }
+/* Section 10's part for Deans and Assistant Deans sits in its own panel: a dark maroon band over a light gold field. */
+.role { border: 1.2pt solid var(--gold); border-radius: 6pt; background: var(--role-bg); overflow: hidden; page-break-inside: avoid; break-inside: avoid; margin: 0 0 8pt 0; }
+.role-head { background: #56000C; border-bottom: 3pt solid #FEBA12; padding: 10pt 14pt 9pt 14pt; }
+.role-head .kick { color: #FEBA12; font-size: 7.6pt; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; line-height: 1.2; }
+.role-head h2 { color: #FFFFFF; margin: 3pt 0 0 0; }
+.role-body { padding: 11pt 14pt 4pt 14pt; }
+.role-body .annot { margin-left: auto; margin-right: auto; }
+.role-body .keys { width: 80%; margin-left: auto; margin-right: auto; grid-template-columns: repeat(3, 1fr); }
+.role-body h3 { font-size: 10.2pt; font-weight: 700; color: var(--accent-2); margin: 6pt 0 3pt 0; page-break-after: avoid; break-after: avoid; }
+kbd { font-family: "Montserrat", Arial, sans-serif; font-size: 0.82em; font-weight: 600; color: var(--ink); background: var(--paper); border: 1px solid var(--key-line); border-bottom-width: 2px; border-radius: 3pt; padding: 0 3.5pt; white-space: nowrap; }
+/* section 10: a button for each division's SharePoint list (solid fills; gold over maroon, a preferred pairing) */
+.lists { display: grid; grid-template-columns: repeat(4, 1fr); gap: 7pt; margin: 4pt 0 6pt 0; page-break-inside: avoid; break-inside: avoid; }
+a.list-btn { display: flex; flex-direction: column; justify-content: flex-start; background: #8D042D; color: #FFFFFF; border-radius: 4pt; padding: 6pt 9pt 7pt 9pt; text-decoration: none; }
+a.list-btn b { font-family: "Bebas Neue", Arial, sans-serif; font-weight: 400; font-size: 18pt; line-height: 1; letter-spacing: 0.04em; color: #FEBA12; }
+a.list-btn span { margin-top: 2pt; font-size: 7.4pt; line-height: 1.3; color: #FFFFFF; }
+/* smaller badges where the screenshot is dense */
+.annot.sm .b { width: 14pt; height: 14pt; font-size: 10.5pt; line-height: 14pt; }
+
+/* ---------- print and screen helpers ---------- */
+@media print { .screen-only { display: none !important; } }
+@media screen { .print-only { display: none !important; } }
+
+/* ---------- screen rendering (the published page) ---------- */
+@media screen {
+  body { font-family: var(--font-body); font-size: 16px; line-height: 1.62; }
+  p { margin: 0 0 12px 0; }
+  h1, h2, .toc li .n, .contact .n, .chain div b { font-family: var(--font-display); }
+
+  .cover { width: auto; height: auto; page-break-after: auto; }
+  .cover .low { display: none; }
+  .cover-in { position: relative; max-width: 940px; margin: 0 auto; box-sizing: border-box;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 36px 30px;
+    display: flex; flex-direction: column; align-items: flex-start; }
+  .cover .logo, .cover .kicker, .cover .t1, .cover .t2, .cover .rule, .cover .t3, .cover .rings, .cover .foot { position: relative; left: auto; right: auto; top: auto; bottom: auto; }
+  .cover .logo { width: min(300px, 70vw); height: auto; }
+  .cover .kicker { margin-top: clamp(28px, 6vw, 56px); font-size: 12px; }
+  .cover .t1 { font-size: clamp(36px, 8vw, 66px); margin-top: 6px; }
+  .cover .t2 { font-size: clamp(108px, 29vw, 250px); line-height: 0.84; margin-left: -0.04em; }
+  .cover .rule { width: 110px; height: 6px; margin-top: 18px; }
+  .cover .t3 { font-size: clamp(22px, 4.2vw, 32px); margin-top: 12px; text-wrap: balance; }
+  /* the seam runs through the middle of the three circles: gold above, maroon below (two hard stops, no blend) */
+  .cover-base { --ring: min(210px, 27vw); background: linear-gradient(var(--gold) calc(var(--ring) / 2 + 6px), var(--maroon) calc(var(--ring) / 2 + 6px)); padding: 6px 0 26px; }
+  .cover-base-in { max-width: 940px; margin: 0 auto; box-sizing: border-box;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .cover .rings { width: 100%; gap: 12px; }
+  .cover .ring { width: var(--ring); min-width: 0; }
+  .cover .ring img { width: var(--ring); height: var(--ring); border-width: 5px; max-width: 100%; }
+  .cover .ring span { font-size: clamp(15px, 3.2vw, 22px); margin-top: 12px; }
+  .cover .ring small { font-size: 10px; margin-top: 4px; }
+  .cover .foot { width: 100%; margin-top: 30px; font-size: 11px; box-sizing: border-box; gap: 12px; }
+  .cover-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; margin-top: 26px; }
+  .cover-actions .updated { font-size: 13px; color: var(--dark); letter-spacing: 0.04em; font-weight: 500; }
+
+
+  .doc { max-width: 880px; margin: 0 auto; box-sizing: border-box;
+    padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); padding-block: 48px 72px; }
+  .doc > section + section { margin-top: 76px !important; }
+  section { scroll-margin-top: 16px; }
+  h1 { font-size: clamp(36px, 6vw, 50px); text-wrap: balance; }
+  h2 { font-size: 26px; margin: 32px 0 8px 0; text-wrap: balance; }
+  h3 { font-size: 16px; margin: 20px 0 4px 0; }
+  .lede { font-size: 18px; margin-bottom: 18px; }
+  .gold-rule { width: 96px; height: 5px; margin: 10px 0 20px 0; }
+  ul { padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  .toc li { font-size: 17px; padding: 0; margin: 0; }
+  .toc li a { padding: 12px 0; }
+  .toc li .n { width: 44px; font-size: 26px; flex: none; }
+  .toc li .t { min-width: 0; }
+  .toc li .s { font-size: 13.5px; margin-top: 2px; }
+  .toc li a:hover .t, .toc li a:focus-visible .t { color: var(--accent); }
+
+  figure { margin: 16px 0 24px 0; }
+  figure img, .annot img { border-radius: 6px; max-width: 100%; height: auto; }
+  figcaption { font-size: 13.5px; margin-top: 8px; }
+  .annot .b { width: 26px; height: 26px; line-height: 26px; font-size: 17px; }
+  .keys { font-size: 14.5px; gap: 10px 24px; }
+  .keys .k { width: 22px; height: 22px; line-height: 22px; font-size: 15px; }
+
+  .box { font-size: 15px; padding: 14px 18px; margin: 16px 0 20px 0; border-radius: 6px; }
+  .box .t { font-size: 12px; margin-bottom: 4px; }
+  .why { gap: 14px; margin-top: 10px; }
+  .why .card { padding: 14px 16px 14px 16px; border-radius: 6px; min-width: 0; }
+  .why .card h3 { font-size: 16px; margin-bottom: 6px; }
+  .why .card p { font-size: 14.5px; line-height: 1.55; }
+  ol.steps > li { padding-left: 46px; margin-bottom: 26px; }
+  ol.steps > li::before { width: 30px; height: 30px; line-height: 30px; font-size: 19px; top: 0; }
+
+  .tbl { overflow-x: auto; }
+  table { font-size: 14.5px; }
+  th { font-size: 12px; padding: 9px 8px; }
+  td { padding: 10px 8px; }
+  td.k { width: 28%; }
+  dl.qa dt { margin-top: 18px; }
+
+  .chain { gap: 12px; }
+  .chain div { font-size: 14px; padding: 12px 14px; border-radius: 6px; min-width: 0; }
+  .chain div b { font-size: 21px; }
+  .contacts { gap: 14px; }
+  .contact { padding: 16px 18px; border-radius: 6px; min-width: 0; }
+  .contact .n { font-size: 25px; }
+  .contact .r { font-size: 14px; }
+  .contact .d { font-size: 14.5px; overflow-wrap: anywhere; }
+  .end { font-size: 13px; }
+  .book { flex-wrap: wrap; gap: 14px 20px; margin: 24px 0 0 0; padding: 18px 20px; border-left-width: 6px; border-radius: 6px; }
+  .book-copy { flex: 1 1 320px; }
+  .book .t { font-family: var(--font-display); font-size: 26px; margin-bottom: 6px; }
+  .book p { font-size: 15px; line-height: 1.6; }
+  a.book-btn { font: 700 15px/1.2 var(--font-body); gap: 10px; padding: 13px 20px; border-radius: 6px; }
+  a.book-btn:hover { background: #56000C; }
+  .book-acts { gap: 10px; }
+  .role { border-width: 2px; border-radius: 10px; margin: 32px 0 8px 0; }
+  .role-head { padding: 16px 22px 14px 22px; border-bottom-width: 4px; }
+  .role-head .kick { font-size: 12px; }
+  .role-head h2 { margin: 6px 0 0 0; }
+  .role-body { padding: 20px 22px 8px 22px; }
+  .role-body h3 { font-size: 17px; margin: 18px 0 6px 0; }
+  kbd { border-radius: 4px; padding: 0 5px; }
+  a.book-btn svg { width: 18px; height: 18px; }
+  .mono { overflow-wrap: anywhere; }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--focus); outline-offset: 2px; border-radius: 3px; }
+  .req3 { gap: 14px; margin-top: 10px; }
+  .req { border-radius: 6px; min-width: 0; }
+  .req .hd { padding: 12px 16px 10px 16px; }
+  .req .hd b { font-family: var(--font-display); font-size: 30px; }
+  .req .hd span { font-size: 11px; margin-top: 4px; }
+  .req .bd { padding: 14px 16px 16px 16px; font-size: 14.5px; line-height: 1.55; }
+  .req .bd p { margin-bottom: 10px; }
+  .req .chips { gap: 6px; margin-bottom: 12px; }
+  .chip { font-size: 12px; padding: 4px 9px; gap: 5px; border-radius: 4px; }
+  .chip svg { width: 12px; height: 12px; }
+  .req .in { font-size: 13.5px; padding-top: 8px; }
+  .req .in + .in { margin-top: 8px; }
+  .req .in b { font-size: 11px; }
+  .flow { margin: 16px 0 24px 0; }
+  .flow .row, .flow .down { grid-template-columns: 1fr 76px 1fr; }
+  .flow .q { font-size: 15px; padding: 12px 16px; border-width: 2px; border-radius: 8px; }
+  .flow .yes { font-size: 11px; gap: 2px; }
+  .flow .yes svg { width: 46px; height: 12px; }
+  .flow .a { padding: 12px 16px; border-radius: 8px; }
+  .flow .a b { font-family: var(--font-display); font-size: 24px; }
+  .flow .a small { font-size: 13.5px; margin-top: 4px; }
+  .flow .a.sec { border-width: 2px; }
+  .flow .down span { font-size: 11px; padding: 6px 0; gap: 6px; }
+  .flow .down svg { width: 12px; height: 20px; }
+  .lists { gap: 10px; margin: 12px 0 20px 0; }
+  a.list-btn { padding: 12px 14px 13px 14px; border-radius: 6px; }
+  a.list-btn b { font-family: var(--font-display); font-size: 28px; }
+  a.list-btn span { font-size: 12.5px; margin-top: 4px; }
+  a.list-btn:hover { background: #56000C; }
+}
+@media screen { .figside dl { font-size: 14px; } .tagk { font-size: 10.5px; } }
+@media screen and (max-width: 720px) {
+  .figside { grid-template-columns: 1fr; }
+  .figside figure img { max-width: 300px; }
+  .req3 { grid-template-columns: 1fr; }
+  table.rules td:nth-child(2) { width: auto; }
+  table.rules td.k { width: auto; }
+  /* the question takes the full width; Yes sits in a narrow column beside its answer, and No steps down at the left */
+  .flow .row { grid-template-columns: 58px 1fr; row-gap: 8px; }
+  .flow .row .q { grid-column: 1 / -1; }
+  .flow .yes svg { width: 30px; }
+  .flow .down { grid-template-columns: 1fr; }
+  .flow .down span { justify-self: start; padding-left: 12px; }
+  .annot.w80, .annot.w92 { width: 100%; }
+  .role-head, .role-body { padding-left: 16px; padding-right: 16px; }
+  .role-body .keys { width: 100%; grid-template-columns: 1fr; }
+  .why, .keys, .contacts, .two { grid-template-columns: 1fr; }
+  .lists { grid-template-columns: 1fr 1fr; }
+  .chain { grid-template-columns: 1fr 1fr; }
+  figure.w45 img, figure.w60 img, figure.w75 img, figure.w80 img, figure.w85 img { width: 100%; }
+  td.k { width: 34%; }
+}
+@media screen and (max-width: 480px) {
+  .chain { grid-template-columns: 1fr; }
+  table { font-size: 13.5px; }
+  th, td { padding-left: 5px; padding-right: 5px; }
+  .annot .b { width: 18px; height: 18px; line-height: 18px; font-size: 12px; box-shadow: 0 0 0 1.5px #FFFFFF; }
+  ol.steps > li { padding-left: 40px; }
+  .cover .rings { gap: 8px; }
+  .cover .ring span { letter-spacing: 0.05em; }
+  .cover .foot { font-size: 10px; letter-spacing: 0.1em; }
+  .toc li .n { width: 36px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* ---------- FQ&C Portal Guide additions (11/7/26) ---------- */
+.cover .t1.long { font-size: 33pt; letter-spacing: 0.03em; }
+@media screen { .cover .t1.long { font-size: clamp(24px, 5vw, 44px); } }
+.cover .t3.long { font-size: 20pt; }
+@media screen { .cover .t3.long { font-size: clamp(20px, 3.4vw, 30px); } }
+.tbl td.k { white-space: normal; }
+figure.w100 img { width: 100%; }
+.mail-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; align-items: start; }
+@media screen and (max-width: 720px) { .mail-pair { grid-template-columns: 1fr; } }
+
+</style>
 </head>
 <body>
-<main>
-<h1>Faculty Qualifications and Credentialing Portal Guide</h1>
-<p>The Office of Academic Affairs is preparing this guide for academic deans, assistant deans, and program directors. The Portal itself is at <a href="https://fqc.joebrownlee.com">fqc.joebrownlee.com</a>.</p>
+<!-- ============ COVER ============ -->
+<div class="cover">
+  <div class="low"></div>
+  <div class="cover-in">
+  <img class="logo" src="assets/logo_on_gold.png" alt="Bossier Parish Community College">
+  <div class="kicker">Office of Academic Affairs</div>
+  <div class="t1 long">Faculty Qualifications &amp; Credentialing</div>
+  <div class="t2">Portal</div>
+  <div class="rule"></div>
+  <div class="t3 long">Guide for Deans, Assistant Deans, and Program Directors</div>
+  <div class="cover-actions screen-only">
+    <span class="updated">Updated November 7, 2026</span>
+  </div>
+  </div>
+  <div class="cover-base"><div class="cover-base-in">
+  <div class="rings">
+    <div class="ring"><img src="assets/cover_bossier.jpg" style="object-position: 52% 50%" alt="Bossier City campus"><span>Bossier City</span><small>Campus</small></div>
+    <div class="ring"><img src="assets/cover_natchitoches.jpg" style="object-position: 80% 50%" alt="Natchitoches campus"><span>Natchitoches</span><small>Campus</small></div>
+    <div class="ring"><img src="assets/cover_sabine.jpg" style="object-position: 22% 50%" alt="Sabine Valley campus"><span>Sabine Valley</span><small>Campus</small></div>
+  </div>
+  <div class="foot"><span>Academic Year 2026-27</span><span>November 2026</span></div>
+  </div></div>
+</div>
+
+<main class="doc">
+<!-- ============ CONTENTS ============ -->
+<section class="toc">
+  <h1>Contents</h1>
+  <div class="gold-rule"></div>
+  <ol>
+    <li><a href="#what"><span class="n">1</span><span class="t">What the Portal is, and why now<span class="s">Why every faculty member goes through it this year</span></span><span class="p" data-toc="what"></span></a></li>
+    <li><a href="#who"><span class="n">2</span><span class="t">Who does what<span class="s">Deans, assistant deans, program directors, and the offices that follow</span></span><span class="p" data-toc="who"></span></a></li>
+    <li><a href="#before"><span class="n">3</span><span class="t">Before you start<span class="s">What to gather, and the rule to remember</span></span><span class="p" data-toc="before"></span></a></li>
+    <li><a href="#glance"><span class="n">4</span><span class="t">The Portal at a glance<span class="s">Where everything is</span></span><span class="p" data-toc="glance"></span></a></li>
+    <li><a href="#steps"><span class="n">5</span><span class="t">Building a packet, step by step<span class="s">From the first choice to the approval form</span></span><span class="p" data-toc="steps"></span></a></li>
+    <li><a href="#questions"><span class="n">6</span><span class="t">What the questions are asking<span class="s">The credential, the routes, and the transcripts</span></span><span class="p" data-toc="questions"></span></a></li>
+    <li><a href="#notmet"><span class="n">7</span><span class="t">When a standard is not met<span class="s">Companion requests, exception-based review, emergencies, and transition plans</span></span><span class="p" data-toc="notmet"></span></a></li>
+    <li><a href="#prepare"><span class="n">8</span><span class="t">Preparing a packet for your dean<span class="s">For program directors, and for the dean or assistant dean who submits it</span></span><span class="p" data-toc="prepare"></span></a></li>
+    <li><a href="#after"><span class="n">9</span><span class="t">After you submit<span class="s">The approval route, the emails, and official transcripts</span></span><span class="p" data-toc="after"></span></a></li>
+    <li><a href="#returned"><span class="n">10</span><span class="t">Returned packets and corrections<span class="s">Correct a filed packet</span></span><span class="p" data-toc="returned"></span></a></li>
+    <li><a href="#later"><span class="n">11</span><span class="t">Adding or removing courses later<span class="s">Follow-ups, removals, and appeals</span></span><span class="p" data-toc="later"></span></a></li>
+    <li><a href="#faq"><span class="n">12</span><span class="t">Common questions<span class="s">The ones we expect to hear most</span></span><span class="p" data-toc="faq"></span></a></li>
+    <li><a href="#contact"><span class="n">13</span><span class="t">Who to contact<span class="s">The people behind the Portal, and what each one covers</span></span><span class="p" data-toc="contact"></span></a></li>
+  </ol>
+</section>
+
+<!-- ============ 1 WHAT ============ -->
+<section class="sec" id="what">
+  <h1><span class="num">1</span>What the Portal is, and why now</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">The Faculty Qualifications and Credentialing Portal is where BPCC documents that each faculty member is qualified for the academic courses they teach. You enter what the instructor's transcripts and records show, and the Portal measures it against each course's standard in the Discipline Matrix. What comes out is one PDF packet, which you submit for approval in Jotform and Academic Affairs files as the instructor's credential record.</p>
+  <p>The Portal is at <a href="https://fqc.joebrownlee.com">fqc.joebrownlee.com</a>. It runs in your browser and keeps nothing. What you enter and attach stays on your computer until you submit the packet yourself.</p>
+
+  <h2>Why now</h2>
+  <p>The revised Faculty Qualifications and Credentialing Policy takes effect January 1, 2027, and Spring 2027 is the first term under it. Every determination is made against its standards and the Discipline Matrix, whether the instructor is new to the College or has taught here for years. Prior teaching and length of service do not establish a qualification on their own (Section VI.1). The packets are also the College's evidence of faculty qualifications for its accreditor, The Commission on Colleges and Universities (formerly SACSCOC).</p>
+  <p>Each dean runs every current faculty member assigned to courses in the division through the Portal as a first submission by May 6, 2027 (Section VI.2). From Summer 2027 the policy applies in full to every individual it covers, new or continuing (Section VI.5).</p>
+
+  <div class="box key avoid">
+    <div class="t">The Discipline Matrix is the minimum</div>
+    <p>For each course, the Matrix names the degree fields that count as the teaching discipline and any related fields, with the coursework that makes a related field count. It also names any requirement every instructor must meet. Where the Matrix sets a standard above the policy's baseline, it marks the standard and its reason, and the Matrix governs (Section V.1). The Portal loads every course's standard, so you never look one up by hand.</p>
+  </div>
+
+  <h2>What a packet is</h2>
+  <p>One packet records one determination for one instructor. It opens with a short report: the courses, the standard each was measured against, the credential, and the route the record takes through approval. Every supporting document follows it, merged in, with the record ID printed below each page. The Portal names and numbers every packet, for example <span class="mono">FQC-L00456789-20261107-1026</span>.</p>
+  <figure class="w60"><img src="shots/p_self-1.png" alt="The first page of a sample packet"><figcaption>The first page of a packet. The stamp shows who submitted it and the term it takes effect.</figcaption></figure>
+
+  <h2>Timeline</h2>
+  <div class="tbl"><table>
+    <tr><td class="k">November 2026</td><td>The Portal is open. Academic Affairs walks Academic Affairs, Enrollment Management and Student Services, and Human Resources leaders through the approval process on November 18. Packets are submitted once Academic Affairs announces that the approval workflow is live.</td></tr>
+    <tr><td class="k">January 1, 2027</td><td>The policy takes effect. Spring 2027 is the first term under it.</td></tr>
+    <tr><td class="k">May 6, 2027</td><td>A first submission is in for every current faculty member (Section VI.2).</td></tr>
+    <tr><td class="k">Summer 2027</td><td>The policy applies in full to every individual it covers, new or continuing (Section VI.5).</td></tr>
+  </table></div>
+  <div class="box tip avoid">
+    <div class="t">Start with new instructors and new assignments</div>
+    <p>No one begins teaching a course before Academic Affairs approves it and Human Resources confirms receipt of the official documentation (Section V.8). Faculty already teaching continue in their current assignments during the transition (Section VI.1). Packets for new instructors and new assignments come first, and current faculty follow by May 6, 2027.</p>
+  </div>
+</section>
+
+<!-- ============ 2 WHO ============ -->
+<section class="sec" id="who">
+  <h1><span class="num">2</span>Who does what</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Credentialing is an Academic Affairs process from start to finish. Divisions prepare and submit packets, and Academic Affairs makes the determination. Human Resources keeps the official documents but does not decide who teaches.</p>
+  <div class="why">
+    <div class="card">
+      <h3>Deans and assistant deans</h3>
+      <p>Gather the documentation and submit the packet for every full-time faculty member in the division. Review and submit the packets program directors prepare for adjuncts. The workflow's notices for the division's records go to the academic dean and the person who submitted.</p>
+    </div>
+    <div class="card">
+      <h3>Program directors</h3>
+      <p>Gather the documentation and build the packet in full for each adjunct who teaches in the program, then send the PDF to the dean or assistant dean, who submits it. Section 8 walks through the handoff.</p>
+    </div>
+    <div class="card">
+      <h3>Academic Affairs</h3>
+      <p>The Associate Vice Chancellor of Instruction (AVCI) or a designee evaluates every packet and concurs or returns it. The AVCI decides exception-based requests and authorizes emergency credentials, and Academic Affairs files every final record.</p>
+    </div>
+    <div class="card">
+      <h3>Human Resources</h3>
+      <p>Confirms that the official transcripts and other official documentation are on file, and records official transcripts when they arrive. Human Resources keeps the personnel record. It does not clear anyone to teach.</p>
+    </div>
+    <div class="card">
+      <h3>Faculty Qualifications Review Committee</h3>
+      <p>Reviews each exception-based request and recommends approval, approval with conditions, or denial to the AVCI (Section V.5). The submitting division's dean sits out that request.</p>
+    </div>
+    <div class="card">
+      <h3>Registrar and Admissions</h3>
+      <p>The Registrar sets a newly approved instructor up in Banner on Academic Affairs' authorization. The Office of Admissions receives a copy of each approved dual enrollment determination for the roster (Section V.9).</p>
+    </div>
+  </div>
+  <div class="box key avoid">
+    <div class="t">Approval to teach comes in one email</div>
+    <p>Assign an instructor as instructor of record only after the <strong>Approved to teach</strong> email (or <strong>Approved to teach, transcripts due</strong>) arrives for the record (Section V.8). Academic Affairs sends the Registrar the authorization to set the instructor up in Banner, so the division no longer emails the Registrar.</p>
+  </div>
+</section>
+
+<!-- ============ 3 BEFORE ============ -->
+<section class="sec" id="before">
+  <h1><span class="num">3</span>Before you start</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">A packet goes quickly when the documents are gathered first.</p>
+
+  <h2>Have these ready</h2>
+  <div class="tbl"><table>
+    <tr><th>What</th><th>Details</th></tr>
+    <tr><td class="k">The instructor</td><td>First and last name and L-number. Everyone credentialed in the Portal already has an L-number from Human Resources.</td></tr>
+    <tr><td class="k">The courses</td><td>Prefix and number for each course, all in one division. Courses in another division go in a separate packet, since each division's dean reviews its own courses (Section V.3).</td></tr>
+    <tr><td class="k">Transcripts</td><td>For every institution relied on, degrees and coursework alike. Unofficial copies the instructor sends are enough to make the determination; the official transcripts go to Human Resources (section 9).</td></tr>
+    <tr><td class="k">Licenses, certifications, and IBCs</td><td>For technical courses, with current standing and the expiration date.</td></tr>
+    <tr><td class="k">Employment and experience</td><td>Verification letters or records whose documented duties cover the course content. Years of experience alone do not demonstrate competencies (Section IV).</td></tr>
+    <tr><td class="k">Curriculum vitae or resume</td><td>Helpful for any instructor, and recommended for technical courses.</td></tr>
+    <tr><td class="k">A foreign credential evaluation</td><td>A course-by-course evaluation for any degree or coursework earned outside the United States (Section V.2).</td></tr>
+    <tr><td class="k">Learning outcomes</td><td>Only for an exception-based request: each course's student learning outcomes, from the master course outline or Simple Syllabus.</td></tr>
+  </table></div>
+
+  <h2>The rule to remember</h2>
+  <p>Nothing on the page is saved. The strip across the top of the Portal says so, and it stays there for a reason.</p>
+  <div class="box tip avoid">
+    <div class="t">Save a draft whenever you stop</div>
+    <p><strong>Save draft</strong> downloads a small file that reopens the form where you left off, through <strong>Open draft or packet</strong>. A draft lists the attached files by name but does not hold them, so you attach them again when you reopen it. Closing or refreshing the page without a draft or a download loses the work.</p>
+  </div>
+
+  <h2>PDFs only</h2>
+  <p>Every attachment must be a PDF. Save photos, scans, and Word documents as PDF first; the Portal refuses anything else and says which file it refused. A password-protected PDF cannot be merged into the packet. The packet lists it, and you attach it beside the packet when you submit.</p>
+
+  <h2>Which browser</h2>
+  <p>The Portal works in any current browser. Chrome or Edge on a computer is easiest, since attaching files from a phone is awkward.</p>
+</section>
+
+<!-- ============ 4 GLANCE ============ -->
+<section class="sec" id="glance">
+  <h1><span class="num">4</span>The Portal at a glance</h1>
+  <div class="gold-rule"></div>
+  <div class="annot w92">
+    <img src="shots/01_page_open.png" alt="The Portal as it opens, with its parts numbered">
+    <span class="b" style="left:24%; top:3%">1</span>
+    <span class="b" style="left:1.6%; top:9%">2</span>
+    <span class="b" style="left:98.6%; top:14.6%">3</span>
+    <span class="b" style="left:1.4%; top:27.5%">4</span>
+    <span class="b" style="left:26.2%; top:27.5%">5</span>
+  </div>
+  <div class="keys">
+    <div><span class="k">1</span><span><strong>The reminder strip.</strong> Nothing on the page is saved.</span></div>
+    <div><span class="k">2</span><span><strong>The Portal's name</strong> and the policy it is built on.</span></div>
+    <div><span class="k">3</span><span><strong>Header buttons.</strong> Theme, How this works, Open draft or packet, and Save draft.</span></div>
+    <div><span class="k">4</span><span><strong>The summary rail.</strong> The instructor, the four routes with their status, and what is left before download.</span></div>
+    <div><span class="k">5</span><span><strong>The five steps.</strong> Each opens once the one before it has what it needs.</span></div>
+  </div>
+
+  <h2>The header buttons</h2>
+  <div class="tbl"><table>
+    <tr><td class="k">Theme</td><td>Five color themes: Classic, High contrast, Game day, Night, and Color-safe. A theme changes only the page, never the packet, and lasts until the page closes.</td></tr>
+    <tr><td class="k">How this works</td><td>A short summary of the five steps, including how a program director's packet reaches the dean.</td></tr>
+    <tr><td class="k">Open draft or packet</td><td>Reopens a saved draft, or a packet the Portal made. A packet opens with its choices: start a follow-up for the instructor, correct and reissue it, open its approval form if it was never submitted, or, for a packet a program director prepared, review and submit it.</td></tr>
+    <tr><td class="k">Save draft</td><td>Downloads the form as it stands, without the attached files.</td></tr>
+  </table></div>
+
+  <h2>The summary rail</h2>
+  <figure class="figside">
+    <figure><img src="shots/10_rail.png" alt="The summary rail for a completed record"></figure>
+    <dl>
+      <dt>Instructor and courses</dt><dd>What the packet is about, and the effective term.</dd>
+      <dt>Determination track</dt><dd>The four routes, Academic, Professional, Exception-based, and Emergency, each marked as met, not met, open, or not available as you work.</dd>
+      <dt>Packet</dt><dd>How many documents are attached, and how many items are left before the packet can download.</dd>
+    </dl>
+  </figure>
+  <p>The label at the foot of the page, <span class="mono">Portal Build 2026-11-07</span> for example, is also recorded inside every packet and draft, so Academic Affairs can match a packet to the build that made it.</p>
+</section>
+
+<!-- ============ 5 STEPS ============ -->
+<section class="sec" id="steps">
+  <h1><span class="num">5</span>Building a packet, step by step</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">The example below follows one instructor, Jordan Landry, with a master's in Mathematics, for MATH 101 and 102. Names and L-numbers in this guide are invented.</p>
+
+  <ol class="steps">
+    <li><b class="h">Say what is being submitted.</b>Choose <strong>First submission</strong> for anyone without a determination in the Portal, new to the College or already teaching here. <strong>Add courses</strong> and <strong>Remove approved courses</strong> change an instructor's approved courses later (section 11), and <strong>Correct a filed packet</strong> reissues one (section 10). Then choose how far the determination reaches: <strong>One course</strong>, <strong>Several courses</strong> named together, or <strong>All qualifying courses</strong>, where you choose one or more prefixes and the Portal finds every course whose standard the instructor meets.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/03_step1.png" alt="Step 1 with First submission and Several courses chosen"><figcaption>Step 1. Every determination is made against the standards effective January 1, 2027.</figcaption></figure>
+    </li>
+    <li><b class="h">Choose the division and the courses.</b>Click the division, choose a prefix, and click each course. Several courses can come from different prefixes in the same division. Each course carries its pathway in the Matrix (Transfer, Technical, or Developmental), and a course the Matrix does not list is marked <em>Not in the Matrix</em> and cannot be chosen. Below the list, a card for each standard shows the minimum, the qualifying and related fields, the 18-hour route where it applies, and anything required of every instructor.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/04_step2.png" alt="Step 2 with MATH 101 and 102 chosen and their standard shown"><figcaption>Step 2. MATH 101 and 102 share one standard, shown in full below the list.</figcaption></figure>
+    </li>
+    <li><b class="h">Enter the instructor and the credential.</b>Enter the name, L-number, and effective term (Spring 2027 through Fall 2028; the Winter session belongs to Spring and Maymester to Summer). Answer the dual enrollment and programmatic governance questions. Then choose the highest relevant credential and its field from the list, which offers only the fields the Matrix names for every course chosen. Enter the credential's details as the transcript shows them, and confirm that every institution relied on was recognized.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/05_field_list.png" alt="The field list open, with Applied Mathematics and Mathematics as qualifying fields"><figcaption>The field list. A degree whose field is not listed goes under <em>A field the Matrix does not name for these courses</em>.</figcaption></figure>
+      <figure class="w75" style="margin-top:6pt"><img src="shots/06a_step3_instructor.png" alt="Step 3 with the instructor and the master's degree entered"><figcaption>Step 3, the instructor and the credential.</figcaption></figure>
+    </li>
+    <li><b class="h">Attach the documents and answer the transcript questions.</b>Attach each document under its type. Tags mark what this record requires. Once transcripts are attached, the Portal asks whether they are official and, if not, whether Human Resources already holds the officials. Section 6 explains what each answer does.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/06b_step3_documents.png" alt="The documentation section with a transcript and a CV attached"><figcaption>Unofficial copies with the officials not yet on file make the determination provisional, and the Portal works out the due date.</figcaption></figure>
+    </li>
+    <li><b class="h">Read the determination.</b>Step 4 evaluates each route course by course as you type. When a route is met, the record proceeds as a standard review under Section V.3. When none is met, Step 4 says why and offers what comes next (section 7). Expedited review is requested here (section 6).
+      <figure class="w75" style="margin-top:6pt"><img src="shots/09_step4.png" alt="Step 4 showing the academic route met"><figcaption>Step 4. The academic route is met through a master's in a qualifying field.</figcaption></figure>
+    </li>
+    <li><b class="h">Say who submits, sign, and download.</b>Step 5 asks who submits the packet in Jotform. Deans and assistant deans choose <strong>I do</strong>. Program directors preparing a packet for an adjunct choose <strong>My academic dean or assistant dean</strong> (section 8). Enter your name, title, BPCC email, and the date. Until everything required is in, a list names what is missing.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/11_step5_self.png" alt="Step 5 with I do chosen and the submitter's details entered"><figcaption>Step 5 for a dean or assistant dean who submits the packet.</figcaption></figure>
+    </li>
+    <li><b class="h">Submit it in Jotform.</b>After the download, <strong>Submit for approval</strong> opens the approval form in a new tab with the record filled in. Attach the PDF you just downloaded, which the browser cannot do for you, along with any files the Portal listed as not merged. Check the details against the packet, check the attestation, and submit.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/12_ready_self.png" alt="The downloaded panel with the Submit for approval button"><figcaption>After the download. A determination and its companion request each get their own button.</figcaption></figure>
+    </li>
+  </ol>
+</section>
+
+<!-- ============ 6 QUESTIONS ============ -->
+<section class="sec" id="questions">
+  <h1><span class="num">6</span>What the questions are asking</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Enter only what is documented. Each answer below changes what the Portal evaluates or what the packet asks for.</p>
+
+  <h2>The field of the credential</h2>
+  <p>The list holds only the fields the Matrix names for every course chosen, grouped as qualifying fields and related fields. Everything else goes under <strong>A field the Matrix does not name for these courses</strong>. If no single field covers every course you chose, the Portal says so; choose the courses one standard at a time, or use All qualifying courses.</p>
+
+  <h2>A related field</h2>
+  <p>A related field counts as the teaching discipline only with documented coursework, never by inference (Section IV). When you choose one, the Portal shows the basis the Matrix sets, and you list the transcript courses that meet it.</p>
+
+  <h2>The 18-hour route</h2>
+  <p>Where the Matrix offers it, a master's or doctorate in a field the Matrix does not name qualifies with at least 18 graduate semester hours in the subject the route names. List every graduate course relied on, one row each, as the transcript shows it. Quarter hours convert at two-thirds of a semester hour, and totals are never rounded up. Thesis, practicum, internship, and research hours count only with a note on how their content is directly relevant (Section IV).</p>
+  <figure class="w85"><img src="shots/19_grad_coursework.png" alt="The graduate coursework table with six rows adding to 18 hours"><figcaption>Six graduate mathematics courses, 18 semester hours, for a master's in a field the Matrix does not name.</figcaption></figure>
+
+  <h2>An associate degree and demonstrated competencies</h2>
+  <p>For technical courses where the Matrix offers the associate option, an associate degree in the discipline also needs documented demonstrated competencies. Describe them, and attach the license, certification, IBC, training record, or employment record whose documented duties cover the course content. Years of experience alone do not count (Section IV).</p>
+
+  <h2>The professional route</h2>
+  <p>For technical coursework only, and only where the Matrix publishes a professional standard. The instructor holds the license or IBC the Matrix names, in good standing and current through the end of the term, with at least the years of documented experience the Matrix sets and recent practice. A vendor's certification counts only for a course that teaches that vendor's product (Section IV). Attach the credential and the experience documentation.</p>
+
+  <h2>Required of every instructor</h2>
+  <p>Some courses carry a requirement every instructor must meet, such as a current license or a certification an outside body requires. The Portal asks each one only for the standards the instructor otherwise meets. Answer each <strong>Documented</strong> or <strong>Not documented</strong> (some also offer <strong>Does not apply</strong>). Not documented means the standard is not met. Each one marked Documented adds its document to the list of what to attach.</p>
+
+  <h2>Institutions and foreign credentials</h2>
+  <p>Every institution relied on, for the degree or any coursework counted, must have been accredited by a body recognized by the U.S. Department of Education or CHEA at the time (Section V.2). A degree or coursework earned outside the United States needs a course-by-course evaluation before the determination is final.</p>
+
+  <h2>Transcripts</h2>
+  <p>A determination can rest on unofficial transcript copies. Once transcripts are attached, the Portal asks three things.</p>
+  <div class="tbl"><table>
+    <tr><th>Question</th><th>What each answer does</th></tr>
+    <tr><td class="k">Are the transcripts attached official?</td><td>Official means received directly from the awarding institution. A copy the instructor sent, or one printed from a student portal, is not.</td></tr>
+    <tr><td class="k">Does Human Resources already hold the officials?</td><td><strong>Yes:</strong> the determination is not provisional, and Human Resources confirms the copies against the officials. <strong>No:</strong> it is provisional until the officials arrive. <strong>Not sure:</strong> it is provisional, and the packet asks Human Resources to check its records first.</td></tr>
+    <tr><td class="k">Did the instructor teach these courses for the College before Spring 2027?</td><td>Asked only on a provisional Spring 2027 packet. <strong>Yes:</strong> the officials are due within 60 days under Section VI.3, and the faculty member keeps teaching meanwhile. <strong>No:</strong> they are due 30 calendar days after the first day of class for the first section taught under the determination, which you enter (Section V.2).</td></tr>
+  </table></div>
+  <p>The packet prints the due date. Section 9 explains what happens if the officials are late.</p>
+
+  <h2>Dual enrollment</h2>
+  <p>A dual enrollment instructor meets the same qualifications as every other instructor of the course (Section V.9). The Portal asks whether a partner school employs the instructor. Official transcripts go to Human Resources like everyone else's, and Academic Affairs sends the Office of Admissions a copy once the determination is approved. Emergency credentialing is not available for dual enrollment.</p>
+
+  <h2>Programmatic governance</h2>
+  <p>When a programmatic accreditor, licensing board, or clinical affiliate sets instructor requirements, the more stringent requirement applies (Section V.1). Name the body and confirm the requirement is documented as met.</p>
+
+  <h2>Expedited review</h2>
+  <p>For an unexpected vacancy or other urgent circumstance, request expedited review in Step 4, describe the circumstance, and record whether the AVCI's concurrence was obtained or is requested with the packet. It shortens the timeline and waives nothing (Section V.6). For an exception-based request, a subcommittee acts within three business days, and the full Committee ratifies at its next meeting.</p>
+</section>
+
+<!-- ============ 7 NOT MET ============ -->
+<section class="sec" id="notmet">
+  <h1><span class="num">7</span>When a standard is not met</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Step 4 says plainly when a route is not met and why. What comes next depends on whether some of the courses are met or none are.</p>
+
+  <h2>Some courses met, others not</h2>
+  <p>One packet records one determination, so the Portal asks you to split the set. For courses you named, it offers three ways.</p>
+  <div class="tbl"><table>
+    <tr><td class="k">Send the others to a companion request</td><td>The packet covers the courses met, and the others go to exception-based review in a second packet downloaded with it, in one sitting. A course short only on a requirement of every instructor goes in as it stands. Any other course goes in only with the coursework you list toward it.</td></tr>
+    <tr><td class="k">Set the others aside</td><td>The packet covers the courses met. After it downloads, <strong>Start the packet for the other courses</strong> carries the instructor and the credential, with the documents, into the next one.</td></tr>
+    <tr><td class="k">Request exception-based review</td><td>Keep only the courses not met, for an exception-based request in this packet.</td></tr>
+  </table></div>
+  <p>With All qualifying courses, the packet covers every course met in the prefixes searched, and any of the others can go to a companion request. A companion request shares the determination's record ID with <span class="mono">-2</span> at the end. Each packet is submitted on its own.</p>
+
+  <h2>Exception-based review</h2>
+  <p>For named courses only (Sections V.4, V.5). The request needs all six elements: the courses, how the standard is not met, the qualifications relied on, why approval will not diminish the quality of instruction (with any mentoring, supervision, or conditions), the supporting evidence, and the relation to each course's learning outcomes. That last element is written course by course beside the catalog description, with the outcomes pasted from the master course outline or Simple Syllabus. The Portal flags qualifications that read as length of experience alone.</p>
+  <figure class="w75"><img src="shots/20_exception_justification.png" alt="The written justification fields of an exception-based request"><figcaption>The written justification. Each course's outcomes and the instructor's preparation for them follow below it.</figcaption></figure>
+  <p>The AVCI seats the Faculty Qualifications Review Committee for the request. The Committee recommends within 10 business days of a complete request, and the AVCI approves, approves with conditions, or denies. An approval covers only the courses in the request and goes on the roster of qualification exceptions (Section V.11). If a request is denied, the dean may request reconsideration from the Vice Chancellor for Academic Affairs and Institutional Effectiveness within 10 business days, with additional documentation (Section V.5).</p>
+  <div class="box key avoid">
+    <div class="t">BSN-prepared nurses</div>
+    <p>The NURS standard allows a BSN-prepared nurse to teach only under an exception the Louisiana State Board of Nursing approves. The Portal asks for the kind of exception, its dates, and the LSBN approval letter, and the record goes as an exception-based request. Without LSBN's approval, exception-based review is not available.</p>
+  </div>
+
+  <h2>Emergency credentials</h2>
+  <p>For one course, when no qualified instructor can be found in time (Section V.7). Name each section by CRN, describe the circumstance, and give a reason for each of the four alternatives the policy lists, for every section. Add the documented basis, the mentor, the acknowledgments, and any prior emergency use. Emergency credentialing is not available for dual enrollment or a programmatically governed course. It remains a request until the AVCI authorizes it, and the Vice Chancellor is notified within three business days. An emergency credential expires at the end of the term the sections are scheduled in and cannot be renewed.</p>
+
+  <h2>Transition plans</h2>
+  <p>Only after an exception-based request is not approved, and only for a faculty member who taught the courses for the College before Spring 2027 (Section VI.4). Open the request's packet and choose <strong>Start a transition plan</strong>, offered through Spring 2027. The plan sets out the actions and their completion date, with the dean who monitors it. The faculty member may teach the courses through Spring 2027 and not after unless qualified. Where no qualifying assignment remains, a College employee's contract is not renewed.</p>
+</section>
+
+<!-- ============ 8 PREPARE ============ -->
+<section class="sec" id="prepare">
+  <h1><span class="num">8</span>Preparing a packet for your dean</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Program directors prepare packets for the adjuncts who teach in their programs, and the academic dean or assistant dean submits them. The packet travels as the PDF itself, which carries everything the dean needs to submit it.</p>
+
+  <div class="role">
+    <div class="role-head">
+      <div class="kick">For program directors</div>
+      <h2>Preparing and sending the packet</h2>
+    </div>
+    <div class="role-body">
+      <ol class="steps">
+        <li><b class="h">Build the packet in full.</b>Follow section 5 for an adjunct who teaches in your program, with every document attached and every question answered.</li>
+        <li><b class="h">In Step 5, choose My academic dean or assistant dean.</b>Enter your name, title, BPCC email, and the date. The packet prints your name and title as <strong>Prepared by</strong>.
+          <figure class="w75" style="margin-top:6pt"><img src="shots/13_step5_prepared.png" alt="Step 5 with My academic dean or assistant dean chosen"><figcaption>Step 5 for a packet prepared for the dean or assistant dean.</figcaption></figure>
+        </li>
+        <li><b class="h">Download it and send the PDF.</b>Send it to your dean or assistant dean by email or Teams, with any files the Portal listed as not merged. Do not submit it in Jotform yourself; nothing is routed until your dean does.
+          <figure class="w75" style="margin-top:6pt"><img src="shots/14_ready_prepared.png" alt="The downloaded panel for a prepared packet, with no Jotform button"><figcaption>A prepared packet has no Submit for approval button.</figcaption></figure>
+        </li>
+      </ol>
+      <figure class="w75"><img src="shots/p_prepared_top.png" alt="The top of a prepared packet, with Prepared by in the Assignment table"><figcaption>A prepared packet names the program director as Prepared by, and the academic dean or assistant dean as the one who submits it in Jotform.</figcaption></figure>
+      <p>If your dean asks for a change, open the PDF in the Portal, choose <strong>Reopen to edit</strong>, attach the documents again, make the change, and choose My academic dean or assistant dean again in Step 5. The new packet takes a new record ID, and you send it in place of the first.</p>
+    </div>
+  </div>
+
+  <div class="role">
+    <div class="role-head">
+      <div class="kick">For deans and assistant deans</div>
+      <h2>Reviewing and submitting it</h2>
+    </div>
+    <div class="role-body">
+      <ol class="steps">
+        <li><b class="h">Open the PDF in the Portal.</b>Choose <strong>Open draft or packet</strong> and pick the file. A prepared packet opens with who prepared it and two choices.
+          <figure class="w85" style="margin-top:6pt"><img src="shots/15_opened_prepared.png" alt="A prepared packet opened in the Portal"><figcaption>A prepared packet, with Review and submit and Reopen to edit.</figcaption></figure>
+        </li>
+        <li><b class="h">Read the packet.</b>Check the courses, the credential, the answers, and the documents in the PDF itself. If anything needs to change, choose <strong>Reopen to edit</strong> instead of submitting it.</li>
+        <li><b class="h">Choose Review and submit, and sign as the submitter.</b>Enter your name and title, and the BPCC email where the workflow should send its notices. <strong>Submit for approval</strong> opens the approval form with the record filled in and you as the submitter, so the workflow's notices come to you.
+          <figure class="w85" style="margin-top:6pt"><img src="shots/16_review_submit.png" alt="Review and submit with the assistant dean's details entered"><figcaption>Review and submit. The record ID and file name are the ones the program director downloaded.</figcaption></figure>
+        </li>
+        <li><b class="h">Attach the same PDF and submit.</b>Attach the PDF you received, unchanged, and any files it lists as not merged. Then check the attestation and submit. The program director does not receive the workflow's emails, so let them know how it turns out.</li>
+      </ol>
+      <p><strong>Reopen to edit</strong> loads the packet into the form with the program director still named as Prepared by. Attach the documents again from the PDF, make the change, and sign Step 5 as the submitter. Because the original was never submitted, the new packet takes a new record ID and replaces nothing. A determination with a companion request arrives as two PDFs; open and submit each one.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9 AFTER ============ -->
+<section class="sec" id="after">
+  <h1><span class="num">9</span>After you submit</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Each packet becomes one submission in Jotform, and the approval workflow routes it by record type. Every decision and signature is recorded on that submission.</p>
+
+  <h2>The approval form</h2>
+  <p>The Portal fills in the record's details. Attach the PDF and check the attestation that it is the file the Portal produced, accurate and complete, then submit. On a provisional record, the form also asks which section the official transcripts are due under. Choose the one the packet prints, Section V.2 or VI.3; the due date comes filled in. A thank-you page then summarizes what happens next.</p>
+
+  <h2>The approval route</h2>
+  <p>The packet prints its own route in its Approval route section. In outline:</p>
+  <div class="tbl"><table>
+    <tr><th>Record</th><th>Route</th></tr>
+    <tr><td class="k">Academic or professional</td><td>The AVCI or designee concurs or returns the packet (Section V.3). Human Resources confirms the official documentation is on file. Academic Affairs authorizes the Registrar, and you receive Approved to teach.</td></tr>
+    <tr><td class="k">Exception-based request</td><td>The AVCI seats the Committee or, for expedited review, a subcommittee. The Committee recommends, and the AVCI decides. An approval then goes through Human Resources and the Registrar like a determination.</td></tr>
+    <tr><td class="k">Emergency request</td><td>The AVCI authorizes the named sections or does not. The Vice Chancellor is notified, Academic Affairs authorizes the Registrar, and Human Resources places the official documentation in the personnel record.</td></tr>
+    <tr><td class="k">Removal</td><td>The AVCI decides on a section in progress when that applies. Academic Affairs updates the record and sends the instructor written notice.</td></tr>
+    <tr><td class="k">Transition plan</td><td>The AVCI establishes the plan with the academic dean.</td></tr>
+  </table></div>
+  <p>Every route ends with the Academic Affairs records designee, who adds the signed Approval Record after the report and files the final packet in the Faculty Credentialing library. It is kept for the duration of employment and five years after, and exception records at least through the College's next reaffirmation (Section V.11).</p>
+
+  <h2>The emails you will receive</h2>
+  <p>Each email goes to the academic dean and the submitter, with the AVCI copied, and replies reach Academic Affairs. The record table in each one names the instructor, the courses, the term, and the record ID.</p>
+  <div class="tbl"><table>
+    <tr><th>Email</th><th>What it means, and what to do</th></tr>
+    <tr><td class="k">Approved to teach</td><td>Every official document is on file. Once the Registrar has set the instructor up, assign them as instructor of record. Nothing more is needed.</td></tr>
+    <tr><td class="k">Approved to teach, transcripts due</td><td>Approved provisionally. Have each institution send an official transcript directly to Human Resources by the date in the email.</td></tr>
+    <tr><td class="k">Official transcripts received</td><td>Human Resources recorded the officials. The approval is no longer provisional.</td></tr>
+    <tr><td class="k">Returned for correction</td><td>Academic Affairs returned the packet, with the reason. Correct it and submit it again (section 10).</td></tr>
+    <tr><td class="k">Official documentation needed</td><td>Human Resources could not confirm a document. Have the instructor send the official copy to Human Resources, then submit again with Correct a filed packet. A transcript that contradicts the packet is reported to the AVCI under Section V.12.</td></tr>
+    <tr><td class="k">Assignment hold</td><td>The official transcripts are past due. Assign no additional or subsequent section until they arrive.</td></tr>
+    <tr><td class="k">Assignment hold lifted</td><td>The officials arrived, and the instructor may be assigned again.</td></tr>
+    <tr><td class="k">Exception-based outcomes</td><td>Exception approved, Exception not approved, or More documentation requested. An approval is followed by Approved to teach once Human Resources confirms the documentation.</td></tr>
+  </table></div>
+  <div class="mail-pair">
+    <figure><img src="shots/e2_approved_due.png" alt="The Approved to teach, transcripts due email"><figcaption>Approved to teach, transcripts due, with the due date in the gold box.</figcaption></figure>
+    <figure><img src="shots/e4_hold.png" alt="The Assignment hold email"><figcaption>The assignment hold, sent the day after the due date when the officials have not arrived.</figcaption></figure>
+  </div>
+
+  <h2>Official transcripts and holds</h2>
+  <p>Official transcripts come directly from the awarding institution to Human Resources; copies from the instructor do not count. When they are late, the instructor may not be assigned to any additional or subsequent section until they arrive (Section V.2). Sections already under way continue through the end of the term. A section in a later term that was already assigned is reassigned unless the transcripts arrive before that term begins.</p>
+  <p>For a faculty member whose officials are due under Section VI.3, Human Resources confirms the day after the due date whether they arrived. If they did not, Human Resources notifies the dean, who meets with the faculty member and may set a transition plan with the AVCI (Section VI.3).</p>
+</section>
+
+<!-- ============ 10 RETURNED ============ -->
+<section class="sec" id="returned">
+  <h1><span class="num">10</span>Returned packets and corrections</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">A returned packet is corrected from the packet itself. Nothing has to be typed again.</p>
+  <ol class="steps">
+    <li><b class="h">Open the original packet.</b>In Step 1, choose <strong>Correct a filed packet</strong> and pick the PDF, or choose <strong>Open draft or packet</strong> and then <strong>Reopen to correct and reissue</strong>.
+      <figure class="w85" style="margin-top:6pt"><img src="shots/17_opened_packet.png" alt="A packet opened in the Portal with its choices"><figcaption>An opened packet. Open its approval form is only for a packet that was never submitted.</figcaption></figure>
+    </li>
+    <li><b class="h">Attach the documents again.</b>Everything comes back filled in except the attachments, which are inside the original PDF. Attach them again, or remove them from the lists.</li>
+    <li><b class="h">Make the change and submit.</b>Answer Step 5 again and download. The new packet prints <strong>Record this replaces</strong> with the original's record ID, and Academic Affairs marks the original Superseded. Submit it like any other packet.</li>
+  </ol>
+  <p>The same steps answer a Committee's request for more documentation; the review period starts again when the request arrives complete. They also correct an error found in a filed packet later.</p>
+</section>
+
+<!-- ============ 11 LATER ============ -->
+<section class="sec" id="later">
+  <h1><span class="num">11</span>Adding or removing courses later</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">An instructor's approved courses change through a follow-up to the record on file.</p>
+
+  <h2>Adding courses</h2>
+  <p>Open the instructor's most recent packet with <strong>Open draft or packet</strong> and choose <strong>Start a follow-up for this instructor</strong>. The instructor carries over, and the earlier record is named as the record on file. Choose <strong>Add courses</strong> in Step 1 and continue as for a first submission. Add courses also covers a new discipline. When the approval on file predates the Portal, start a new packet, choose Add courses, and leave the record on file blank.</p>
+
+  <h2>Removing approved courses</h2>
+  <p>Start a follow-up the same way and choose <strong>Remove approved courses</strong> (Section V.10). Say who initiated the removal, the academic dean or designee or Academic Affairs, and choose the reason; another documented reason must be written out. If the instructor is teaching the courses now, the Portal asks whether a section is in progress and whether an outside body sets a mandatory instructor qualification. Without one, the AVCI decides whether the section may finish the term.</p>
+  <p>Academic Affairs updates the record and notifies the instructor in writing. A removed course returns only through a new qualification review. The instructor may appeal within 10 business days of the notice: to the AVCI and then the Vice Chancellor when the dean initiated the removal, or directly to the Vice Chancellor when Academic Affairs did. The Vice Chancellor's decision is final, and the removal stands while an appeal is pending.</p>
+</section>
+
+<!-- ============ 12 FAQ ============ -->
+<section class="sec" id="faq">
+  <h1><span class="num">12</span>Common questions</h1>
+  <div class="gold-rule"></div>
+  <dl class="qa">
+    <dt>This instructor has taught here for years. Do they still need a packet?</dt>
+    <dd>Yes. Every current faculty member goes through the Portal as a first submission by May 6, 2027, measured against the standards effective January 1, 2027 (Section VI.2). Prior teaching and length of service do not establish a qualification on their own. Faculty continue in their current assignments while the transition runs (Section VI.1).</dd>
+
+    <dt>Who prepares the packet for an adjunct?</dt>
+    <dd>The program director of the program the adjunct teaches in, who sends it to the dean or assistant dean to submit (section 8). Deans and assistant deans prepare and submit packets for full-time faculty.</dd>
+
+    <dt>An adjunct teaches in two of our programs.</dt>
+    <dd>Courses in one division can go in one packet, so agree with the other program director on who prepares it. Courses in another division always need their own packet, prepared and submitted through that division.</dd>
+
+    <dt>Can I use the transcript copies the instructor sent me?</dt>
+    <dd>Yes. A determination can rest on unofficial copies. If Human Resources does not already hold the officials, the determination is provisional until they arrive, and the packet prints the due date (section 6).</dd>
+
+    <dt>The course I need is not in the list, or shows Not in the Matrix.</dt>
+    <dd>The Portal lists the active academic courses in the Banner extract dated 8/7/26, and a course the Matrix does not list cannot be determined. Those are courses leaving the catalog. If you need one, contact Academic Affairs before building the packet.</dd>
+
+    <dt>The instructor's degree field is not in the field list.</dt>
+    <dd>Choose <em>A field the Matrix does not name for these courses</em>. Where the Matrix offers the 18-hour route, list the graduate coursework. Otherwise the academic route is not met, and Step 4 offers exception-based review.</dd>
+
+    <dt>I closed the page after downloading and never submitted the packet.</dt>
+    <dd>Open the PDF with <strong>Open draft or packet</strong> and choose <strong>Open its approval form</strong>. It opens with the record filled in as it was downloaded. Use it only for a packet that was never submitted.</dd>
+
+    <dt>A PDF will not attach or merge.</dt>
+    <dd>The Portal takes PDFs only and names any file it refused. A password-protected PDF attaches but cannot be merged; the packet lists it, and you attach it beside the packet when you submit.</dd>
+
+    <dt>Does the Portal keep a copy of anything?</dt>
+    <dd>No. It runs in your browser and sends nothing on its own. The packet and any drafts are saved only to your computer, and the record reaches Academic Affairs only when the packet is submitted in Jotform.</dd>
+
+    <dt>Who can see a filed packet?</dt>
+    <dd>Packets carry L-numbers and transcript copies, so the Faculty Credentialing library is closed to general staff. Ask Academic Affairs for a copy of a filed record.</dd>
+  </dl>
+</section>
+
+<!-- ============ 13 CONTACT ============ -->
+<section class="sec" id="contact">
+  <h1><span class="num">13</span>Who to contact</h1>
+  <div class="gold-rule"></div>
+  <p class="lede">Questions? We're here to help!</p>
+  <div class="contacts">
+    <div class="contact">
+      <div class="n">Joe Brownlee</div>
+      <div class="r">Associate Vice Chancellor of Instruction</div>
+      <div class="d">A-204 · jbrownlee@bpcc.edu · x6152<br>The Portal, determinations, and the approval workflow</div>
+    </div>
+    <div class="contact">
+      <div class="n">Dr. Megan Bange</div>
+      <div class="r">Associate Vice Chancellor of Planning, Budgeting, and Resources<br>Accreditation Liaison</div>
+      <div class="d">A-218 · mbange@bpcc.edu · x6554<br>The Discipline Matrix and accreditation questions</div>
+    </div>
+    <div class="contact">
+      <div class="n">Human Resources</div>
+      <div class="r">Official documentation</div>
+      <div class="d">hr@bpcc.edu<br>Official transcripts, and what is already on file</div>
+    </div>
+    <div class="contact">
+      <div class="n">Your Dean</div>
+      <div class="r">Review and submission</div>
+      <div class="d">Which instructors you prepare packets for, and the first look at every packet</div>
+    </div>
+  </div>
+  <div class="book">
+    <div class="book-copy">
+      <div class="t">Want some extra support?</div>
+      <p>If you'd like to work through a first packet together or talk through a question, Joe Brownlee and Dr. Megan Bange are happy to meet. Book with Joe for anything about the Portal and your packets, or with Dr. Bange for the Discipline Matrix and accreditation questions. Pick a time that works for you, and the call is set up in Teams.</p>
+    </div>
+    <div class="book-acts">
+      <a class="book-btn" href="https://bookings.cloud.microsoft/bookwithme/user/e57bf25330af4453b298f673af8e0191@bpcc.edu/meetingtype/avUpRAL5BE-Vn0dVdNzmDw2?anonymous&amp;ismsaljsauthenabled&amp;ep=mcard" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book time with Joe</a>
+      <a class="book-btn" href="https://bookings.cloud.microsoft/bookwithme/user/1b384762461c48428e36236a2bc28d64%40bpcc.edu?anonymous&amp;ismsaljsauthenabled=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book time with Dr. Bange</a>
+    </div>
+  </div>
+  <div class="end">Faculty Qualifications and Credentialing Portal · Guide for Deans, Assistant Deans, and Program Directors · Office of Academic Affairs, Bossier Parish Community College · November 2026. The screenshots show Portal Build 2026-11-07 on an invented record. BPCC is a member of the LCTC System.</div>
+</section>
+
 </main>
 </body>
 </html>
