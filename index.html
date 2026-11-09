@@ -133,6 +133,7 @@ dl.qa dd { margin: 2pt 0 0 0; }
 /* tables */
 table { width: 100%; border-collapse: collapse; font-size: 9.4pt; margin: 6pt 0 10pt 0; }
 tr { page-break-inside: avoid; break-inside: avoid; }
+tr:first-child { page-break-after: avoid; break-after: avoid; } /* a header row stays with the first row below it */
 th { text-align: left; font-weight: 700; color: var(--accent); border-bottom: 2px solid var(--gold); padding: 5pt 6pt; font-size: 8.8pt; letter-spacing: 0.06em; text-transform: uppercase; }
 td { border-bottom: 1px solid var(--line); padding: 5pt 6pt; vertical-align: top; }
 td.k { font-weight: 600; width: 1.6in; color: var(--accent-2); }
@@ -471,7 +472,7 @@ figure.w100 img { width: 100%; }
 
   <h2>Why now</h2>
   <p>The revised Faculty Qualifications and Credentialing Policy takes effect January 1, 2027, and Spring 2027 is the first term under it. Every determination is made against its standards and the Discipline Matrix, whether the instructor is new to the College or has taught here for years. Prior teaching and length of service do not establish a qualification on their own (Section VI.1). The packets are also the College's evidence of faculty qualifications for its accreditor, The Commission on Colleges and Universities (formerly SACSCOC).</p>
-  <p>Each dean runs every current faculty member assigned to courses in the division through the Portal as a first submission by May 6, 2027 (Section VI.2). From Summer 2027 the policy applies in full to every individual it covers, new or continuing (Section VI.5).</p>
+  <p>Each dean runs every current faculty member assigned to courses in the division through the Portal as a first submission by May 6, 2027 (Section VI.2). From Spring 2027 the policy applies in full to any instructor, and any course, not taught for the College in an earlier term, and from Summer 2027 to every individual it covers, new or continuing (Section VI.5).</p>
 
   <div class="box key avoid">
     <div class="t">The Discipline Matrix is the minimum</div>
@@ -491,7 +492,7 @@ figure.w100 img { width: 100%; }
   </table></div>
   <div class="box tip avoid">
     <div class="t">Start with new instructors and new assignments</div>
-    <p>No one begins teaching a course before Academic Affairs approves it and Human Resources confirms receipt of the official documentation (Section V.8). Faculty already teaching continue in their current assignments during the transition (Section VI.1). Packets for new instructors and new assignments come first, and current faculty follow by May 6, 2027.</p>
+    <p>No one begins teaching a course before Academic Affairs approves it and Human Resources confirms whether it holds the official transcripts the determination relies on (Section V.8). Faculty who taught a course for the College before Spring 2027 keep teaching it while the transition audit runs (Section VI.1). Packets for new instructors and new assignments come first, and current faculty follow by May 6, 2027.</p>
   </div>
 </section>
 
@@ -499,7 +500,7 @@ figure.w100 img { width: 100%; }
 <section class="sec" id="who">
   <h1><span class="num">2</span>Who does what</h1>
   <div class="gold-rule"></div>
-  <p class="lede">Credentialing is an Academic Affairs process from start to finish. Divisions prepare and submit packets, and Academic Affairs makes the determination. Human Resources keeps the official documents but does not decide who teaches.</p>
+  <p class="lede">Credentialing is an Academic Affairs process from start to finish. Divisions prepare and submit packets, and Academic Affairs makes the determination. Human Resources keeps the official transcripts but does not decide who teaches.</p>
   <div class="why">
     <div class="card">
       <h3>Deans and assistant deans</h3>
@@ -515,7 +516,7 @@ figure.w100 img { width: 100%; }
     </div>
     <div class="card">
       <h3>Human Resources</h3>
-      <p>Confirms that the official transcripts and other official documentation are on file, and records official transcripts when they arrive. Human Resources keeps the personnel record. It does not clear anyone to teach.</p>
+      <p>Confirms whether it holds the official transcripts a determination relies on, including any course-by-course evaluation, and records official transcripts when they arrive. Instructors reach the Portal already hired, so the rest of the personnel record is in place. Human Resources does not clear anyone to teach.</p>
     </div>
     <div class="card">
       <h3>Faculty Qualifications Review Committee</h3>
@@ -544,9 +545,9 @@ figure.w100 img { width: 100%; }
     <tr><td class="k">The instructor</td><td>First and last name and employee ID. Everyone credentialed in the Portal already has one from Human Resources: an L-number, or an H-number for some longtime employees.</td></tr>
     <tr><td class="k">The courses</td><td>Prefix and number for each course, all in one division. Courses in another division go in a separate packet, since each division's dean reviews its own courses (Section V.3).</td></tr>
     <tr><td class="k">Transcripts</td><td>For every institution relied on, degrees and coursework alike. Unofficial copies the instructor sends are enough to make the determination; the official transcripts go to Human Resources (section 9).</td></tr>
-    <tr><td class="k">Licenses, certifications, and IBCs</td><td>For technical courses, with current standing and the expiration date.</td></tr>
-    <tr><td class="k">Employment and experience</td><td>Verification letters or records whose documented duties cover the course content. Years of experience alone do not demonstrate competencies (Section IV).</td></tr>
-    <tr><td class="k">Curriculum vitae or resume</td><td>Helpful for any instructor, and recommended for technical courses.</td></tr>
+    <tr><td class="k">Licenses, certifications, and IBCs</td><td>For technical courses, with current standing and the expiration date. The Portal asks for the date of each one a standard relies on, and the packet lists them so Academic Affairs can follow up before they lapse (Section V.12).</td></tr>
+    <tr><td class="k">Curriculum vitae or resume</td><td>Helpful for any instructor. Where a standard counts experience, the resume or CV documents it.</td></tr>
+    <tr><td class="k">Employment records</td><td>Letters from employers or an employment verification, letters of recommendation, the instructor's BPCC employment application, or other records of dates and duties. Recommended where a standard counts experience, and never required on their own, since a resume or CV documents experience too. Years of experience alone do not demonstrate competencies (Section IV).</td></tr>
     <tr><td class="k">A foreign credential evaluation</td><td>A course-by-course evaluation for any degree or coursework earned outside the United States (Section V.2).</td></tr>
     <tr><td class="k">A closed institution's records statement</td><td>Only when an institution relied on has closed and its records do not survive: the statement that the records are unavailable, with the other evidence of the degree or coursework (Section V.2).</td></tr>
     <tr><td class="k">Learning outcomes</td><td>Only for an exception-based request: each course's student learning outcomes, from the master course outline or Simple Syllabus.</td></tr>
@@ -563,6 +564,11 @@ figure.w100 img { width: 100%; }
   <p>Every attachment must be a PDF. Save photos, scans, and Word documents as PDF first; the Portal refuses anything else and says which file it refused. A password-protected PDF cannot be merged into the packet. The packet lists it, and you attach it beside the packet when you submit.</p>
   <p>Pages go into the packet reading upright. When a page's text runs sideways or upside down, the Portal turns it and says so under the file. A scan has no text to read, so the Portal says which pages are scans; choose <strong>Check pages</strong> and use <strong>Turn</strong> on any that are sideways. <strong>Undo</strong> puts a page back as it came. The packet's list of documents names the pages turned.</p>
   <figure class="w75"><img src="shots/21_page_check.png" alt="Attached transcripts with their pages shown small, one turned automatically and a scanned page turned by hand"><figcaption>A transcript turned automatically, and a scan's second page turned by hand.</figcaption></figure>
+
+  <h2>One file with several documents</h2>
+  <p>Instructors often send everything in one PDF. Attach it under <strong>One PDF with several documents</strong>, select its pages, and choose what they are. A page can carry more than one type, and each document type below the box counts the pages marked for it, so nothing needs attaching twice. Choose <strong>Leave out</strong> for any page the packet does not need, such as a Social Security card or a driver's license, and it never reaches the packet or SharePoint. Every page needs a type or Leave out before the packet downloads. A draft keeps the marks, and they come back when you attach the file again.</p>
+  <figure class="w85"><img src="shots/23_combined.png" alt="One PDF with five pages marked as transcripts, a CV, left out, and employment"><figcaption>Five pages from one file. The driver's license on page 4 is left out, and page 5 is selected, ready for another type.</figcaption></figure>
+  <p>A file attached under one type can count toward another as well. Under the file, <strong>Also counts as another document type</strong> adds the other types it documents, such as an employer letter that also names an award. The packet lists the file once, with every type it counts toward.</p>
 
   <h2>Which browser</h2>
   <p>The Portal works in any current browser. Chrome or Edge on a computer is easiest, since attaching files from a phone is awkward.</p>
@@ -625,7 +631,7 @@ figure.w100 img { width: 100%; }
       <figure class="w75" style="margin-top:6pt"><img src="shots/05_field_list.png" alt="The field list open, with Applied Mathematics and Mathematics as qualifying fields"><figcaption>The field list. A degree whose field is not listed goes under <em>A field the Matrix does not name for these courses</em>.</figcaption></figure>
       <figure class="w75" style="margin-top:6pt"><img src="shots/06a_step3_instructor.png" alt="Step 3 with the instructor and the master's degree entered"><figcaption>Step 3, the instructor and the credential.</figcaption></figure>
     </li>
-    <li><b class="h">Attach the documents and answer the transcript questions.</b>Attach each document under its type. Tags mark what this record requires. Once transcripts are attached, the Portal asks whether they are official and, if not, whether Human Resources already holds the officials. Section 6 explains what each answer does.
+    <li><b class="h">Attach the documents and answer the transcript questions.</b>Attach each document under its type, or attach the instructor's single PDF and mark its pages (section 3). Tags mark what this record requires, and what is only recommended. Once transcripts are attached, the Portal asks whether they are official and, if not, whether Human Resources already holds the officials. Section 6 explains what each answer does.
       <figure class="w75" style="margin-top:6pt"><img src="shots/06b_step3_documents.png" alt="The documentation section with a transcript and a CV attached"><figcaption>Unofficial copies with the officials not yet on file make the determination provisional, and the Portal works out the due date.</figcaption></figure>
     </li>
     <li><b class="h">Read the determination.</b>Step 4 evaluates each route course by course as you type. When a route is met, the record proceeds as a standard review under Section V.3. When none is met, Step 4 says why and offers what comes next (section 7). Expedited review is requested here (section 6).
@@ -657,18 +663,21 @@ figure.w100 img { width: 100%; }
   <figure class="w85"><img src="shots/19_grad_coursework.png" alt="The graduate coursework table with six rows adding to 18 hours"><figcaption>Six graduate mathematics courses, 18 semester hours, for a master's in a field the Matrix does not name.</figcaption></figure>
 
   <h2>An associate degree and demonstrated competencies</h2>
-  <p>For technical courses where the Matrix offers the associate option, an associate degree in the discipline also needs documented demonstrated competencies. Describe them, and attach the license, certification, IBC, training record, or employment record whose documented duties cover the course content. Years of experience alone do not count (Section IV).</p>
+  <p>For technical courses where the Matrix offers the associate option, an associate degree in the discipline also needs documented demonstrated competencies. Describe them, and attach the license, certification, IBC, training record, resume, or employment record whose documented duties cover the course content. Years of experience alone do not count (Section IV).</p>
 
   <h2>The professional route</h2>
-  <p>For technical coursework only, and only where the Matrix publishes a professional standard. The instructor holds the license or IBC the Matrix names, in good standing and current through the end of the term, with at least the years of documented experience the Matrix sets and recent practice. A vendor's certification counts only for a course that teaches that vendor's product (Section IV). Attach the credential and the experience documentation.</p>
+  <p>For technical coursework only, and only where the Matrix publishes a professional standard. The instructor holds the license or IBC the Matrix names, in good standing and current through the end of the term, with at least the years of documented experience the Matrix sets and recent practice. A vendor's certification counts only for a course that teaches that vendor's product (Section IV). Attach the credential, and a resume, CV, or employment records documenting the experience.</p>
 
   <h2>Required of every instructor</h2>
   <p>Some courses carry a requirement every instructor must meet, such as a current license or a certification an outside body requires. The Portal asks each one only for the standards the instructor otherwise meets. Answer each <strong>Documented</strong> or <strong>Not documented</strong> (some also offer <strong>Does not apply</strong>). Not documented means the standard is not met. Each one marked Documented adds its document to the list of what to attach. For CTEC 297, name the CTEC course whose content the approved topic covers; what the Matrix requires of every instructor of that course applies to CTEC 297 too.</p>
+  <p>When a license, certification, or IBC documents a requirement, enter its expiration date, or check <strong>It does not expire</strong>. The date is required where only a credential can document the requirement. An expired credential counts as not documented. One that expires before the end of the term leaves the determination standing and adds a question asking Academic Affairs to confirm the renewal is on file. The packet lists every dated credential under <strong>Credentials to keep current</strong>, for the term certification (Section V.12).</p>
+  <figure class="w85"><img src="shots/24_requirement_expires.png" alt="An RN license marked Documented with an expiration date of March 31, 2027"><figcaption>An RN license that expires during Spring 2027. The packet asks Academic Affairs to confirm the renewal before it lapses.</figcaption></figure>
 
   <h2>Institutions</h2>
   <p>Every institution relied on, for the degree or any coursework counted, must have been accredited by a body recognized by the U.S. Department of Education or CHEA at the time (Section V.2). A degree or coursework earned outside the United States needs a course-by-course evaluation before the determination is final.</p>
   <p>When an institution relied on has closed, its student records usually pass to a custodian, often a state agency or another college. An official transcript from the custodian counts as official, and the transcript questions below apply to it as to any other. When the records do not survive, the instructor provides a written statement that they are unavailable, from the custodian or the state agency responsible for them, with any other evidence of the degree or coursework, such as the diploma or a licensing board's verification. Attach it under <strong>Closed institution</strong>. The Associate Vice Chancellor of Instruction decides whether that evidence documents the degree or coursework, and if it does, it stands in place of that institution's official transcripts. Transcripts from any other institution relied on are still required (Section V.2).</p>
 
+  <div class="avoid">
   <h2>Transcripts</h2>
   <p>A determination can rest on unofficial transcript copies. Once transcripts are attached, the Portal asks three things.</p>
   <div class="tbl"><table>
@@ -677,6 +686,7 @@ figure.w100 img { width: 100%; }
     <tr><td class="k">Does Human Resources already hold the officials?</td><td><strong>Yes:</strong> the determination is not provisional, and Human Resources confirms the copies against the officials. <strong>No:</strong> it is provisional until the officials arrive. <strong>Not sure:</strong> it is provisional, and the packet asks Human Resources to check its records first.</td></tr>
     <tr><td class="k">Did the instructor teach these courses for the College before Spring 2027?</td><td>Asked only on a provisional Spring 2027 packet. <strong>Yes:</strong> the officials are due 60 days after the packet is submitted or after January 1, 2027, whichever is later (Section VI.3), and the faculty member keeps teaching meanwhile. <strong>No:</strong> they are due 30 calendar days after the first day of class for the first section taught under the determination, which you enter (Section V.2).</td></tr>
   </table></div>
+  </div>
   <p>The packet prints the due date. Section 9 explains what happens if the officials are late.</p>
 
   <h2>Dual enrollment</h2>
@@ -781,9 +791,9 @@ figure.w100 img { width: 100%; }
   <p>The packet prints its own route in its Approval route section. In outline:</p>
   <div class="tbl"><table>
     <tr><th>Record</th><th>Route</th></tr>
-    <tr><td class="k">Academic or professional</td><td>The AVCI or designee concurs or returns the packet (Section V.3). Human Resources confirms the official documentation is on file. Academic Affairs authorizes the Registrar, and you receive Approved to teach.</td></tr>
+    <tr><td class="k">Academic or professional</td><td>The AVCI or designee concurs or returns the packet (Section V.3). Human Resources confirms whether it holds the official transcripts the determination relies on; a record that relies on none, such as a professional determination, skips that step. Academic Affairs authorizes the Registrar, and you receive Approved to teach.</td></tr>
     <tr><td class="k">Exception-based request</td><td>The AVCI seats the Committee or, for expedited review, a subcommittee. The Committee recommends, and the AVCI decides. An approval then goes through Human Resources and the Registrar like a determination.</td></tr>
-    <tr><td class="k">Emergency request</td><td>The AVCI authorizes the named sections or does not. The Vice Chancellor is notified, Academic Affairs authorizes the Registrar, and Human Resources places the official documentation in the personnel record.</td></tr>
+    <tr><td class="k">Emergency request</td><td>The AVCI authorizes the named sections or does not. The Vice Chancellor is notified, Academic Affairs authorizes the Registrar, and Human Resources places the official transcripts in the personnel record.</td></tr>
     <tr><td class="k">Removal</td><td>The AVCI decides on a section in progress when that applies. Academic Affairs updates the record and sends the instructor written notice.</td></tr>
     <tr><td class="k">Transition plan</td><td>The AVCI establishes the plan with the academic dean.</td></tr>
   </table></div>
@@ -793,14 +803,14 @@ figure.w100 img { width: 100%; }
   <p>Each email goes to the academic dean and the submitter, and to the program director who prepared the packet, with the AVCI copied, and replies reach Academic Affairs. The record table in each one names the instructor, the courses, the term, and the record ID.</p>
   <div class="tbl"><table>
     <tr><th>Email</th><th>What it means, and what to do</th></tr>
-    <tr><td class="k">Approved to teach</td><td>Every official document is on file. Once the Registrar has set the instructor up, assign them as instructor of record. Nothing more is needed.</td></tr>
+    <tr><td class="k">Approved to teach</td><td>Any official transcripts the determination relies on are on file. Once the Registrar has set the instructor up, assign them as instructor of record. Nothing more is needed.</td></tr>
     <tr><td class="k">Approved to teach, transcripts due</td><td>Approved provisionally. Have each institution send an official transcript directly to Human Resources by the date in the email.</td></tr>
     <tr><td class="k">Official transcripts received</td><td>Human Resources recorded the officials. The approval is no longer provisional.</td></tr>
     <tr><td class="k">Returned for correction</td><td>Academic Affairs returned the packet, with the reason. Correct it and submit it again (section 10).</td></tr>
-    <tr><td class="k">Official documentation needed</td><td>Human Resources could not confirm a document. Have the instructor send the official copy to Human Resources, then submit again with Correct a filed packet. A transcript that contradicts the packet is reported to the AVCI under Section V.12.</td></tr>
+    <tr><td class="k">Not approved, official transcripts do not match</td><td>The official transcripts Human Resources holds differ from the copies in the packet, and the email says how. The academic dean reports it to the AVCI under Section V.12. If the officials still support the standard, correct the packet with Correct a filed packet and submit it again.</td></tr>
     <tr><td class="k">Assignment hold</td><td>The official transcripts are past due. Assign no additional or subsequent section until they arrive.</td></tr>
     <tr><td class="k">Assignment hold lifted</td><td>The officials arrived, and the instructor may be assigned again.</td></tr>
-    <tr><td class="k">Exception-based outcomes</td><td>Exception approved, Exception not approved, or More documentation requested. An approval is followed by Approved to teach once Human Resources confirms the documentation.</td></tr>
+    <tr><td class="k">Exception-based outcomes</td><td>Exception approved, Exception not approved, or More documentation requested. An approval is followed by Approved to teach once Human Resources confirms the official transcripts.</td></tr>
   </table></div>
   <div class="mail-pair">
     <figure><img src="shots/e2_approved_due.png" alt="The Approved to teach, transcripts due email"><figcaption>Approved to teach, transcripts due, with the due date in the gold box.</figcaption></figure>
@@ -847,7 +857,7 @@ figure.w100 img { width: 100%; }
   <div class="gold-rule"></div>
   <dl class="qa">
     <dt>This instructor has taught here for years. Do they still need a packet?</dt>
-    <dd>Yes. Every current faculty member goes through the Portal as a first submission by May 6, 2027, measured against the standards effective January 1, 2027 (Section VI.2). Prior teaching and length of service do not establish a qualification on their own. Faculty continue in their current assignments while the transition runs (Section VI.1).</dd>
+    <dd>Yes. Every current faculty member goes through the Portal as a first submission by May 6, 2027, measured against the standards effective January 1, 2027 (Section VI.2). Prior teaching and length of service do not establish a qualification on their own. Faculty who taught a course for the College before Spring 2027 keep teaching it while the transition audit runs (Section VI.1).</dd>
 
     <dt>Who prepares the packet for an adjunct?</dt>
     <dd>The program director of the program the adjunct teaches in, who sends it to the dean or assistant dean to submit (section 8). Deans and assistant deans prepare and submit packets for full-time faculty.</dd>
@@ -896,8 +906,8 @@ figure.w100 img { width: 100%; }
     </div>
     <div class="contact">
       <div class="n">Human Resources</div>
-      <div class="r">Official documentation</div>
-      <div class="d">hr@bpcc.edu<br>Official transcripts, and what is already on file</div>
+      <div class="r">Official transcripts</div>
+      <div class="d">hr@bpcc.edu<br>Official transcripts and course-by-course evaluations, and whether they are on file</div>
     </div>
     <div class="contact">
       <div class="n">Your Dean</div>
@@ -915,7 +925,7 @@ figure.w100 img { width: 100%; }
       <a class="book-btn" href="https://bookings.cloud.microsoft/bookwithme/user/1b384762461c48428e36236a2bc28d64%40bpcc.edu?anonymous&amp;ismsaljsauthenabled=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book time with Dr. Bange</a>
     </div>
   </div>
-  <div class="end">Faculty Qualifications and Credentialing Portal · Guide for Deans, Assistant Deans, and Program Directors · Office of Academic Affairs, Bossier Parish Community College · November 2026. The screenshots show Portal Build 2026-11-08b on an invented record. BPCC is a member of the LCTC System.</div>
+  <div class="end">Faculty Qualifications and Credentialing Portal · Guide for Deans, Assistant Deans, and Program Directors · Office of Academic Affairs, Bossier Parish Community College · November 2026. The screenshots show Portal Build 2026-11-09 on invented records. BPCC is a member of the LCTC System.</div>
 </section>
 
 </main>
