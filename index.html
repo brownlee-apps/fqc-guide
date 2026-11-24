@@ -414,6 +414,56 @@ figure.w100 img { width: 100%; }
 .mail-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 14pt; align-items: start; }
 @media screen and (max-width: 720px) { .mail-pair { grid-template-columns: 1fr; } }
 
+/* ---------- FQ&C Workflow Guide (11/19/26): its own cover, framed emails, scenarios ---------- */
+/* The cover trades the three campuses for the route a record takes: four steps on the gold and maroon seam. */
+@media print {
+  .cover.wf .t2 { top: 3.05in; font-size: 150pt; }
+  .cover.wf .rings { top: 6.8in; gap: 0.15in; }
+  .cover.wf .rings::before { top: 0.8in; }
+}
+.cover.wf .rings { grid-template-columns: repeat(4, 1fr); }
+.cover.wf .rings::before { content: ""; position: absolute; left: 12.5%; right: 12.5%; height: 5pt; margin-top: -2.5pt; background: var(--dark); }
+.cover.wf .ring { width: 1.6in; position: relative; }
+.cover.wf .ring .icon { width: 1.6in; height: 1.6in; border-radius: 50%; background: var(--maroon); border: 6pt solid var(--dark); box-sizing: border-box; display: flex; align-items: center; justify-content: center; }
+.cover.wf .ring .icon svg { width: 0.72in; height: 0.72in; stroke: var(--gold); fill: none; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+@media screen {
+  .cover.wf .t2 { font-size: clamp(72px, 19.5vw, 172px); }
+  .cover.wf .cover-base { --ring: min(150px, 20vw); }
+  .cover.wf .rings { position: relative; gap: 8px; }
+  .cover.wf .rings::before { top: calc(var(--ring) / 2); }
+  .cover.wf .ring { width: var(--ring); }
+  .cover.wf .ring .icon { width: var(--ring); height: var(--ring); border-width: 5px; }
+  .cover.wf .ring .icon svg { width: 46%; height: 46%; }
+}
+/* Emails and pages are pictured in their own window frames, so they carry no border of their own. */
+figure.mail img { border: none; border-radius: 0; background: transparent; }
+figure.mail figcaption { margin-top: 0; }
+.mail-pair figure.mail { margin-top: 0; }
+/* Who acts on each step of a scenario */
+.tag { display: inline-block; font-size: 7.2pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; padding: 0.5pt 5pt; border-radius: 2.5pt; margin-right: 5pt; vertical-align: 1pt; white-space: nowrap; }
+.tag.hr { background: #FEBA12; color: #56000C; }
+.tag.reg { background: #8D042D; color: #FFFFFF; }
+.tag.aa { background: #56000C; color: #FFFFFF; }
+.tag.dean { background: #F7F2F3; color: #56000C; border: 1px solid #E2D9DB; }
+.tag.adm { background: #FFFFFF; color: #56000C; border: 1px solid #8D042D; }
+.scn { border: 1px solid var(--line); border-top: 4pt solid var(--gold); border-radius: 4pt; padding: 8pt 12pt 6pt 12pt; margin: 8pt 0 12pt 0; page-break-inside: avoid; break-inside: avoid; }
+.scn h3 { margin: 0 0 2pt 0; font-size: 11pt; color: var(--accent-2); }
+.scn .set { font-size: 9.4pt; color: var(--mute); margin: 0 0 5pt 0; }
+.scn ol { list-style: none; margin: 0; padding: 0; counter-reset: e; }
+.scn li { position: relative; counter-increment: e; padding: 4pt 0 4pt 24pt; margin: 0; border-top: 1px dashed var(--line); font-size: 9.6pt; line-height: 1.45; }
+.scn li::before { content: counter(e); position: absolute; left: 0; top: 4.5pt; width: 16pt; height: 16pt; border-radius: 50%; background: var(--maroon); color: #FFFFFF; font-family: "Bebas Neue", Arial, sans-serif; font-size: 11pt; line-height: 16pt; text-align: center; }
+.scn .fig { color: var(--mute); font-size: 8.6pt; }
+@media screen {
+  .tag { font-size: 10.5px; padding: 1px 7px; }
+  .scn { padding: 12px 16px 8px 16px; }
+  .scn h3 { font-size: 17px; }
+  .scn .set { font-size: 14.5px; }
+  .scn li { font-size: 15px; padding: 7px 0 7px 34px; }
+  .scn li::before { width: 23px; height: 23px; line-height: 23px; font-size: 15px; top: 7px; }
+  .scn .fig { font-size: 13px; }
+}
+dl.qa dt .tag { margin-left: 0; }
+
 </style>
 </head>
 <body>
@@ -428,7 +478,7 @@ figure.w100 img { width: 100%; }
   <div class="rule"></div>
   <div class="t3 long">Guide for Deans, Assistant Deans, and Program Directors</div>
   <div class="cover-actions screen-only">
-    <span class="updated">Updated November 18, 2026</span>
+    <span class="updated">Updated November 19, 2026</span>
   </div>
   </div>
   <div class="cover-base"><div class="cover-base-in">
@@ -471,7 +521,7 @@ figure.w100 img { width: 100%; }
   <p>The Portal is at <a href="https://fqc.joebrownlee.com">fqc.joebrownlee.com</a>. It runs in your browser and keeps nothing. What you enter and attach stays on your computer until you submit the packet yourself.</p>
 
   <h2>Why now</h2>
-  <p>The revised Faculty Qualifications and Credentialing Policy takes effect January 1, 2027, and Spring 2027 is the first term under it. Every determination is made against its standards and the Discipline Matrix, whether the instructor is new to the College or has taught here for years. Prior teaching and length of service do not establish a qualification on their own (Section VI.1). The packets are also the College's evidence of faculty qualifications for its accreditor, The Commission on Colleges and Universities (formerly SACSCOC).</p>
+  <p>The revised Faculty Qualifications and Credentialing Policy takes effect January 1, 2027, and Spring 2027 is the first term under it. Every determination is made against its standards and the Discipline Matrix, whether the instructor is new to the College or has taught here for years. Prior teaching and length of service do not establish a qualification on their own (Section VI.1). The packets are also the College's evidence of faculty qualifications for its institutional accreditor.</p>
   <p>Each dean runs every current faculty member assigned to courses in the division through the Portal as a first submission by May 6, 2027 (Section VI.2). From Spring 2027 the policy applies in full to any instructor, and any course, not taught for the College in an earlier term, and from Summer 2027 to every individual it covers, new or continuing (Section VI.5).</p>
 
   <div class="box key avoid">
@@ -524,7 +574,7 @@ figure.w100 img { width: 100%; }
     </div>
     <div class="card">
       <h3>Registrar and Admissions</h3>
-      <p>The Registrar sets a newly approved instructor up in Banner on Academic Affairs' authorization. The Office of Admissions receives a copy of each approved dual enrollment determination for the roster (Section V.9).</p>
+      <p>The Registrar sets a newly approved instructor up in Banner on Academic Affairs' authorization. The Office of Admissions makes no determinations. It receives a copy of every decision on a dual enrollment instructor, a denial or removal included, and keeps the roster it uses to schedule dual enrollment sections (Section V.9). The dean's term certification covers dual enrollment sections with every other section (Section V.12).</p>
     </div>
   </div>
   <div class="box key avoid">
@@ -611,7 +661,7 @@ figure.w100 img { width: 100%; }
       <dt>Packet</dt><dd>How many documents are attached, and how many items are left before the packet can download.</dd>
     </dl>
   </figure>
-  <p>The label at the foot of the page, <span class="mono">Portal Build 2026-11-18c</span> for example, is also recorded inside every packet and draft, so Academic Affairs can match a packet to the build that made it.</p>
+  <p>The label at the foot of the page, <span class="mono">Portal Build 2026-11-20d</span> for example, is also recorded inside every packet and draft, so Academic Affairs can match a packet to the build that made it.</p>
 </section>
 
 <!-- ============ 5 STEPS ============ -->
@@ -691,7 +741,9 @@ figure.w100 img { width: 100%; }
   <p>The packet prints the due date. Section 9 explains what happens if the officials are late.</p>
 
   <h2>Dual enrollment</h2>
-  <p>A dual enrollment instructor meets the same qualifications as every other instructor of the course (Section V.9). The Portal asks whether a partner school employs the instructor. Official transcripts go to Human Resources like everyone else's, and Academic Affairs sends the Office of Admissions a copy once the determination is approved. Emergency credentialing is not available for dual enrollment.</p>
+  <p>A dual enrollment instructor meets the same qualifications as every other instructor of the course (Section V.9). The Portal asks which high school's students take the course, from the Louisiana Department of Education's list for the ten parishes (or Other for a school not listed), and whether a partner school employs the instructor. Official transcripts go to Human Resources like everyone else's, and Academic Affairs sends the Office of Admissions a copy of the decision, approval or denial. Emergency credentialing is not available for dual enrollment.</p>
+  <h2>Staff type, advisor, and location</h2>
+  <p>Step 3 asks the instructor's faculty staff type, the code the Registrar records in Banner: Full-time (FT), Adjunct (ADJ), Part-time (PT), or High School (HS). Dual enrollment selects HS; change it when BPCC employs the instructor. Every full-time instructor carries the advisor designation, so the Portal asks about it only for the others, since some adjunct, part-time, and dual enrollment instructors carry it too. Step 3 also asks where the instructor mainly teaches: Bossier, Natchitoches, Sabine Valley, or online. The packet prints each answer.</p>
 
   <h2>Programmatic governance</h2>
   <p>When a programmatic accreditor, licensing board, or clinical affiliate sets instructor requirements, the more stringent requirement applies (Section V.1). Name the body and confirm the requirement is documented as met.</p>
@@ -730,6 +782,9 @@ figure.w100 img { width: 100%; }
 
   <h2>Transition plans</h2>
   <p>Only for a faculty member who taught the courses for the College before Spring 2027, in two cases. After an exception-based request is not approved (Section VI.4), open the request's packet and choose <strong>Start a transition plan</strong>. When official transcripts due under Section VI.3 have not arrived by their due date, open that packet and choose <strong>Start a transition plan (Section VI.3)</strong>, after meeting with the faculty member. Both are offered through Spring 2027. The plan sets out the actions and their completion date, with the dean who monitors it. The faculty member may teach the courses through Spring 2027 and not after unless qualified. Where no qualifying assignment remains, a College employee's contract is not renewed.</p>
+  <h2>Closing a transition plan</h2>
+  <p>Open the plan's final packet, which Academic Affairs sends on request. When the faculty member has completed the plan, choose <strong>The faculty member completed the plan</strong>. The Portal starts a determination for the plan's courses with the instructor and credentials carried over; add what was completed in Step 3 with its documents, and attach the final packet of the record the plan followed under <strong>Earlier records</strong>. Each course is measured against its current standard, and when the determination is approved and filed, Academic Affairs marks the plan Closed. When the plan ends without being completed, choose <strong>Close the plan as not completed</strong>, say why, and answer whether any qualifying assignment remains. The AVCI acknowledges the closing record, and the dean notifies the faculty member in writing. Either way, the plan's final packet is merged behind the new report.</p>
+  <figure class="w85"><img src="shots/27_close_plan.png" alt="A transition plan's final packet opened, with The faculty member completed the plan and Close the plan as not completed among its choices"><figcaption>A transition plan's final packet, opened. The two choices in the middle close the plan, as completed or as not completed (Section VI.4).</figcaption></figure>
 </section>
 
 <!-- ============ 8 PREPARE ============ -->
@@ -798,7 +853,7 @@ figure.w100 img { width: 100%; }
     <tr><td class="k">Removal</td><td>The AVCI decides on a section in progress when that applies. Academic Affairs updates the record and sends the instructor written notice.</td></tr>
     <tr><td class="k">Transition plan</td><td>The AVCI establishes the plan with the academic dean.</td></tr>
   </table></div>
-  <p>Every route ends with the Academic Affairs records designee. Jotform's filing email carries the packet and its FQ&amp;C Decision Record as attachments. The designee opens the packet in the Portal, chooses <strong>Finish and file</strong> in the gold box marked for Academic Affairs use only, and gives it that record. The Portal draws the Decision Record after the report, with each decision, its signature and date, and the notices sent, and leaves Jotform's own pages out. The final packet downloads with _Final at the end of the packet's name, and the designee files it in the Faculty Credentialing library. It is kept for the duration of employment and five years after, and exception records at least through the College's next reaffirmation (Section V.11).</p>
+  <p>Every route ends with the Academic Affairs records designee. Jotform's filing email carries the packet and its FQ&amp;C Decision Record as attachments. The designee opens the packet in the Portal, chooses <strong>Finish and file</strong> in the gold box marked for Academic Affairs use only, and gives it that record. The Portal draws the Decision Record after the report, with each decision, its signature and date, and the notices sent, and leaves Jotform's own pages out. The final packet downloads with _Final at the end of the packet's name, and <strong>File in SharePoint</strong> beside it opens the filing form with the record filled in. Within a few minutes SharePoint files the packet, updates the instructor's record, and emails you that it is filed. Your division's <strong>Approved Courses</strong> list in the Faculty Credentialing site then shows each course with its status: open it from that email. A provisional approval is filed at once and again, in place, when Human Resources confirms the official transcripts. It is kept for the duration of employment and five years after, and exception records at least through the College's next reaffirmation (Section V.11).</p>
 
   <h2>The emails you will receive</h2>
   <p>Each email goes to the academic dean and the submitter, and to the program director who prepared the packet, with the AVCI copied, and replies reach Academic Affairs. The record table in each one names the instructor, the courses, the term, and the record ID.</p>
@@ -853,7 +908,11 @@ figure.w100 img { width: 100%; }
 
   <h2>Removing approved courses</h2>
   <p>Start a follow-up the same way and choose <strong>Remove approved courses</strong> (Section V.10). Say who initiated the removal, the academic dean or designee or Academic Affairs, and choose the reason; another documented reason must be written out. If the instructor is teaching the courses now, the Portal asks whether a section is in progress and whether an outside body sets a mandatory instructor qualification. Without one, the AVCI decides whether the section may finish the term.</p>
-  <p>Academic Affairs updates the record and notifies the instructor in writing. A removed course returns only through a new qualification review. The instructor may appeal within 10 business days of the notice: to the AVCI and then the Vice Chancellor when the dean initiated the removal, or directly to the Vice Chancellor when Academic Affairs did. The Vice Chancellor's decision is final, and the removal stands while an appeal is pending.</p>
+  <p>Academic Affairs updates the record and notifies the dean in writing, and the dean notifies the instructor in writing, with a copy to Academic Affairs, for every removal, whoever initiated it. A removed course returns only through a new qualification review. The instructor may appeal within 10 business days of the dean's notice: to the AVCI and then the Vice Chancellor when the dean initiated the removal, or directly to the Vice Chancellor when Academic Affairs did. The Vice Chancellor's decision is final, and the removal stands while an appeal is pending.</p>
+
+  <h2>Requalification after a course changes</h2>
+  <p>When a course is substantively revised in content, level, or student learning outcomes, or the Matrix raises its standard, the dean or designee or Academic Affairs may decide that requalification is required, and then every instructor approved for the course is requalified before teaching it in the first term the change takes effect (Section V.10). Choose <strong>Requalification review</strong> in Step 1, or open the approval's final packet and choose <strong>Start a requalification review</strong>. The credentials carry over. Say what prompted the review, who initiated it, and when requalification was required; choose the courses being requalified; and say whether it relies only on the original record or on documentation earned since as well. The original final packet is merged behind the new report, so its documents are not attached again. An approval at the published standard is checked against the current standard; an exception-based approval is kept when its qualifications still address the course's current outcomes. When requalification is not supported, the Portal starts the removal with the reason filled in.</p>
+  <figure class="w85"><img src="shots/26_requalification.png" alt="Step 1 of a requalification review, with what prompted it, who initiated it, and the date it was required"><figcaption>A requalification review opened from the approval's final packet, which the note names. The courses being requalified are chosen in Step 2.</figcaption></figure>
 </section>
 
 <!-- ============ 12 FAQ ============ -->
@@ -885,11 +944,15 @@ figure.w100 img { width: 100%; }
     <dt>A PDF will not attach or merge.</dt>
     <dd>The Portal takes PDFs only and names any file it refused. A password-protected PDF attaches but cannot be merged; the packet lists it, and you attach it beside the packet when you submit.</dd>
 
+    <dt>Someone wants to teach for us but has not applied or been hired. Can we see how they would come out?</dt>
+    <dd>Yes. Choose <strong>Preliminary review</strong> in Step 1. The employee ID is optional, nothing is routed for approval, and every page of the PDF says it is not a qualification determination (Section V.8). Keep it with the division; it is never filed. If the College hires the individual, open the review and choose <strong>Start the first submission from this review</strong>. The answers and the documents come back, and the Portal asks for the employee ID.
+      <figure class="w75" style="margin-top:6pt"><img src="shots/25_preliminary.png" alt="Step 1 with Preliminary review and One course chosen, and the note that it is not a qualification determination"><figcaption>Step 1 with Preliminary review chosen, and the note that says what a review is not.</figcaption></figure></dd>
+
     <dt>Does the Portal keep a copy of anything?</dt>
     <dd>No. It runs in your browser and sends nothing on its own. The packet and any drafts are saved only to your computer, and the record reaches Academic Affairs only when the packet is submitted in Jotform.</dd>
 
     <dt>Who can see a filed packet?</dt>
-    <dd>Packets carry employee IDs and transcript copies, so the Faculty Credentialing library is closed to general staff. Ask Academic Affairs for a copy of a filed record.</dd>
+    <dd>Packets carry employee IDs and transcript copies, so only Academic Affairs, the VCAA, the Accreditation Liaison, and Human Resources open them in the Faculty Credentialing site. Your division's Approved Courses list there shows each instructor's courses and their status. Ask Academic Affairs for a copy of a filed record.</dd>
   </dl>
 </section>
 
@@ -930,7 +993,7 @@ figure.w100 img { width: 100%; }
       <a class="book-btn" href="https://bookings.cloud.microsoft/bookwithme/user/1b384762461c48428e36236a2bc28d64%40bpcc.edu?anonymous&amp;ismsaljsauthenabled=true" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>Book time with Dr. Bange</a>
     </div>
   </div>
-  <div class="end">Faculty Qualifications and Credentialing Portal · Guide for Deans, Assistant Deans, and Program Directors · Office of Academic Affairs, Bossier Parish Community College · November 2026. The screenshots show Portal Build 2026-11-18c on invented records. BPCC is a member of the LCTC System.</div>
+  <div class="end">Faculty Qualifications and Credentialing Portal · Guide for Deans, Assistant Deans, and Program Directors · Office of Academic Affairs, Bossier Parish Community College · November 2026. The screenshots show Portal Build 2026-11-20d on invented records. BPCC is a member of the LCTC System.</div>
 </section>
 
 </main>
